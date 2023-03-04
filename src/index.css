@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer base {
+  :root {
+    font-size: 62.5%;
+    --duration: 300ms;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-White font-kumbh;
+  }
+
+  a:focus-visible,
+  img:focus-visible {
+    outline: none;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .link {
+    @apply capitalize text-xl xl:text-2xl outline-none focus-within:text-Dark_grayish_blue;
+  }
+
+  .li-item {
+    @apply p-2 outline-none rounded-[1px] focus-within:outline-1 focus-within:outline focus-within:outline-Orange font-bold;
+  }
+
+  .footer-link {
+    @apply link text-Grayish_blue hover:text-Dark_grayish_blue font-medium;
+  }
+
+  .header-link {
+    @apply link  text-Very_dark_blue xl:text-Dark_grayish_blue hover:text-Grayish_blue tracking-wide font-normal;
+  }
+
+  .side {
+    @apply font-bold;
+  }
+}
