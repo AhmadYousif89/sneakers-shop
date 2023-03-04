@@ -50,12 +50,14 @@ export const Header = ({ children }: PropsWithChildren) => {
           className="xs:hidden"
           aria-expanded={menuIsOpen}
           onClick={() => setMenuState(true)}>
+          <span className="sr-only">side menu button</span>
           <MenuIcon aria-hidden />
         </Button>
 
         <SideNavigation />
 
         <Button href="/home">
+          <span className="sr-only">company logo</span>
           <img src={logo} alt="company logo" />
         </Button>
 
@@ -71,10 +73,12 @@ export const Header = ({ children }: PropsWithChildren) => {
               {totalQty}
             </span>
           )}
+          <span className="sr-only">shopping cart displaying the items quantity</span>
           <CartIcon />
         </Button>
 
         <Button ref={profileRef} className="hover:ring-2 hover:ring-Orange rounded-full">
+          <span className="sr-only">profile image</span>
           <img
             className="h-12 xl:h-16"
             src={profileImg}

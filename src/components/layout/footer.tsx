@@ -10,7 +10,8 @@ export const Footer = () => {
     <footer className="grid grid-cols-3 gap-y-8 justify-items-center px-8 py-16 mt-auto min-h-[5rem] border-t-2 border-Light_grayish_blue">
       <figure className="row-start-1 col-span-full mb-16">
         <Button href="/">
-          <img src={logo} alt="company logo" />
+          <span className="sr-only">company logo</span>
+          <img src={logo} alt="company logo" aria-hidden />
         </Button>
       </figure>
 

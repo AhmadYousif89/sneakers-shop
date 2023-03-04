@@ -81,6 +81,7 @@ export const ProductDetails = () => {
               setShowMsg(false);
             }}
             className="text-Orange p-2 rounded-full focus-visible:bg-Grayish_blue focus-visible:text-Orange active:translate-y-px hover:bg-Light_grayish_blue">
+            <span className="sr-only">decrease quantity</span>
             <MinusIcon className="w-7 h-7" />
           </Button>
 
@@ -94,6 +95,7 @@ export const ProductDetails = () => {
               setShowMsg(false);
             }}
             className="text-Orange p-2 rounded-full focus-visible:bg-Grayish_blue focus-visible:text-Orange active:translate-y-px hover:bg-Light_grayish_blue">
+            <span className="sr-only">increase quantity</span>
             <PlusIcon className="w-7 h-7" />
           </Button>
 

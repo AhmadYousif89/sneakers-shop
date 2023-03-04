@@ -27,6 +27,7 @@ export const CartItem = ({ item }: { item: TCartItem }) => {
       </div>
 
       <Button onClick={() => removeCartItem(item.id)}>
+        <span className="sr-only">delete item</span>
         <DeleteIcon className="hover:fill-Orange xl:scale-125" />
       </Button>
     </li>

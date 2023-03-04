@@ -26,6 +26,7 @@ export const CategoryItem = ({ item }: { item: TProduct }) => {
         <p className="flex items-center justify-between text-Dark_grayish_blue text-2xl font-bold">
           <span className="">${item.discountedPrice}</span>
           <Button hasRipple onClick={() => setIsFavorite(pv => !pv)}>
+            <span className="sr-only">like this sneaker</span>
             <FavorIcon fill={isFavorite} />
           </Button>
         </p>

@@ -47,6 +47,7 @@ export const ProductCaruosel = ({ inLightbox = false }) => {
           className={`xl:hidden group-hover:block absolute top-1/2 left-0 translate-x-1/2 -translate-y-1/2 ${
             inLightbox ? 'xl:block -translate-x-1/2' : ''
           }`}>
+          <span className="sr-only">go to previuos image</span>
           <NavigateBackIcon className="hover:fill-Orange" />
         </Button>
         <img
@@ -69,6 +70,7 @@ export const ProductCaruosel = ({ inLightbox = false }) => {
           className={`xl:hidden group-hover:block absolute top-1/2 right-0 -translate-x-1/2 -translate-y-1/2 rotate-180 ${
             inLightbox ? 'xl:block translate-x-1/2' : ''
           }`}>
+          <span className="sr-only">go to next image</span>
           <NavigateBackIcon className="hover:fill-Orange" />
         </Button>
       </figure>

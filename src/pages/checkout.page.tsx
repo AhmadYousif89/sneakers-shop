@@ -32,6 +32,7 @@ export const Checkout = () => {
     <section className="my-16 mx-8">
       <div className="relative">
         <Button
+          title="navigate to previous page"
           onClick={() => navigate(-1)}
           className="absolute top-1/2 -translate-y-1/2 left-0"
           variant={'navigation'}>

@@ -34,6 +34,7 @@ export const CheckoutItem = ({ cartItem }: { cartItem: TCartItem }) => {
         <Button
           onClick={() => decrementCartItem(cartItem.id)}
           className="text-Dark_grayish_blue p-2 rounded-full focus-visible:bg-Grayish_blue focus-visible:text-Dark_grayish_blue active:translate-y-px hover:bg-Light_grayish_blue">
+          <span className="sr-only">decrement item quantity</span>
           <MinusIcon />
         </Button>
 
@@ -42,6 +43,7 @@ export const CheckoutItem = ({ cartItem }: { cartItem: TCartItem }) => {
         <Button
           onClick={() => incrementCartItem(cartItem.id)}
           className="text-Dark_grayish_blue p-2 rounded-full focus-visible:bg-Grayish_blue focus-visible:text-Dark_grayish_blue active:translate-y-px hover:bg-Light_grayish_blue">
+          <span className="sr-only">increment item quantity</span>
           <PlusIcon />
         </Button>
       </div>

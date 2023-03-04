@@ -25,6 +25,7 @@ export const SideNavigation = () => {
         aria-expanded={menuIsOpen}
         onClick={() => setMenuState(false)}
         className="ml-8 mt-16 cursor-pointer w-fit">
+        <span className="sr-only">close side menu</span>
         <CloseIcon />
       </Button>
 
