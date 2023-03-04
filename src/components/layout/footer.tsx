@@ -62,6 +62,7 @@ export const Footer = () => {
           <li key={link.id} title={link.name} className="li-item">
             <NavLink to={'/home'} className="footer-link">
               {link.icon}
+              <span className="sr-only">{link.name} link</span>
             </NavLink>
           </li>
         ))}
