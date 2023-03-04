@@ -102,9 +102,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         <Link
           {...props}
           to={href}
-          onMouseDown={e => handleMouseDown(e)}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={() => setRipples([])}
+          // onMouseDown={e => handleMouseDown(e)}
+          // onTouchStart={handleTouchStart}
+          // onTouchEnd={() => setRipples([])}
           ref={ref as ForwardedRef<HTMLAnchorElement>}
           className={cm(buttonVariants({ variant, size, className }))}>
           {props.children}
@@ -128,10 +128,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         {...props}
         ref={ref as ForwardedRef<HTMLButtonElement>}
-        onDrag={e => e.preventDefault()}
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={() => setRipples([])}
+        // onMouseDown={handleMouseDown}
+        // onTouchStart={handleTouchStart}
+        // onTouchEnd={() => setRipples([])}
         className={cm(buttonVariants({ variant, size, className }))}>
         {props.children}
         {ripples.map((ripple, idx) => (
