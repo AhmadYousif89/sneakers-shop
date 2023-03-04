@@ -7,8 +7,8 @@ export const NewsletterSection = () => {
   return (
     <section className="bg-Very_dark_blue ">
       <figure>
-        <img src={small} alt="contact us image" className="xl:hidden" />
-        <img src={wide} alt="contact us image" className="hidden xl:block" />
+        <img src={small} alt="newsletter image" className="xl:hidden" />
+        <img src={wide} alt="newsletter image" className="hidden xl:block" />
       </figure>
 
       <div className="grid xl:grid-cols-[50rem,1fr] items-center justify-items-center">

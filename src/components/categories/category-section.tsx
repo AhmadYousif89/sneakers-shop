@@ -37,7 +37,7 @@ export const CategorySection = () => {
           <Button
             key={category}
             variant="category"
-            aria-selected={selectedCategory === category}
+            aria-pressed={selectedCategory === category}
             onClick={() => {
               if (selectedCategory === category) return;
               setProductIsLoading(true);

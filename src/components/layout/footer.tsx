@@ -15,9 +15,9 @@ export const Footer = () => {
       </figure>
 
       <ul className="grid gap-4 justify-items-center">
-        <span className="text-2xl capitalize text-Very_dark_blue font-bold mb-8">
+        <li className="text-2xl capitalize text-Very_dark_blue font-bold mb-8">
           product
-        </span>
+        </li>
         {footer_links.products.map(link => (
           <li key={link.id} className="li-item">
             <NavLink to={''} className="footer-link">
@@ -28,9 +28,9 @@ export const Footer = () => {
       </ul>
 
       <ul className="grid gap-4 justify-items-center">
-        <span className="text-2xl capitalize text-Very_dark_blue font-bold mb-8">
+        <li className="text-2xl capitalize text-Very_dark_blue font-bold mb-8">
           category
-        </span>
+        </li>
         {footer_links.category.map(link => (
           <li key={link.id} className="li-item">
             <NavLink to={''} className="footer-link">
@@ -41,9 +41,9 @@ export const Footer = () => {
       </ul>
 
       <ul className="grid gap-4 justify-items-center">
-        <span className="text-2xl capitalize text-Very_dark_blue font-bold mb-8">
+        <li className="text-2xl capitalize text-Very_dark_blue font-bold mb-8">
           company
-        </span>
+        </li>
         {footer_links.company.map(link => (
           <li key={link.id} className="li-item">
             <NavLink to={''} className="footer-link">
@@ -54,9 +54,9 @@ export const Footer = () => {
       </ul>
 
       <ul className="flex gap-4 items-center col-span-full">
-        <span className="row-start-1 col-span-full text-2xl capitalize text-Very_dark_blue font-bold">
+        <li className="row-start-1 col-span-full text-2xl capitalize text-Very_dark_blue font-bold">
           social
-        </span>
+        </li>
         {footer_links.social.map(link => (
           <li key={link.id} title={link.name} className="li-item">
             <NavLink to={''} className="footer-link">

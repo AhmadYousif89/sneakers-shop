@@ -77,7 +77,7 @@ export const ProductCaruosel = ({ inLightbox = false }) => {
         {sneakerImgThumbs.map((imgThumb, idx) => (
           <figure
             key={imgThumb}
-            aria-selected={idx === curImage}
+            aria-pressed={idx === curImage}
             onClick={() => setCurImage(idx)}
             className={`relative overflow-hidden cursor-pointer rounded-2xl border-Orange aria-selected:border-[3px] after:absolute after:inset-0 aria-selected:after:bg-Pale_orange after:opacity-50 shadow-md shadow-Grayish_blue ${
               inLightbox ? 'shadow-none' : ''
