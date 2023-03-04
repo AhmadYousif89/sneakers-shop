@@ -29,7 +29,7 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      <figure>
+      <figure className="bg-Very_dark_blue">
         <img
           className={`min-h-[40rem] max-h-[80rem] w-full object-cover xl:hidden`}
           src={heroImg}

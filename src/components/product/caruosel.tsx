@@ -10,9 +10,9 @@ import p2_176 from '../../assets/images/p2-176.jpg';
 import p3_176 from '../../assets/images/p3-176.jpg';
 import p4_176 from '../../assets/images/p4-176.jpg';
 
-import { NavigateBackIcon } from '../icons/navigate-back';
 import { Button } from '../ui/button';
 import { useUI } from '../../context/ui.context';
+import { NavigateBackIcon } from '../icons/navigate-back';
 
 const sneakerImgs = [p1_1000, p2_1000, p3_1000, p4_1000];
 const sneakerImgThumbs = [p1_176, p2_176, p3_176, p4_176];
@@ -45,7 +45,7 @@ export const ProductCaruosel = ({ inLightbox = false }) => {
           variant={'caruosel'}
           onClick={displayPrevImage}
           className={`xl:hidden group-hover:block absolute top-1/2 left-0 translate-x-1/2 -translate-y-1/2 ${
-            inLightbox ? 'block -translate-x-1/2' : ''
+            inLightbox ? 'xl:block -translate-x-1/2' : ''
           }`}>
           <NavigateBackIcon className="hover:fill-Orange" />
         </Button>
@@ -58,7 +58,7 @@ export const ProductCaruosel = ({ inLightbox = false }) => {
           hasRipple
           onClick={() => setLightboxState(true)}
           className={`hidden xl:block absolute overflow-hidden bottom-10 right-10 text-2xl font-bold tracking-wider bg-Very_dark_blue/50 text-Light_grayish_blue rounded-sm p-4 opacity-0 group-hover:opacity-100 group-hover:ring-2 ring-Light_grayish_blue ${
-            inLightbox ? 'hidden' : ''
+            inLightbox ? 'xl:hidden' : ''
           }`}>
           Showcase
         </Button>
@@ -67,7 +67,7 @@ export const ProductCaruosel = ({ inLightbox = false }) => {
           variant={'caruosel'}
           onClick={displayNextImage}
           className={`xl:hidden group-hover:block absolute top-1/2 right-0 -translate-x-1/2 -translate-y-1/2 rotate-180 ${
-            inLightbox ? 'block translate-x-1/2' : ''
+            inLightbox ? 'xl:block translate-x-1/2' : ''
           }`}>
           <NavigateBackIcon className="hover:fill-Orange" />
         </Button>

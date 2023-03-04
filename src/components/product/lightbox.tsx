@@ -15,7 +15,7 @@ export const Lightbox = () => {
           className={'text-6xl w-full text-right mb-4 hover:text-Orange'}>
           &times;
         </Button>
-        <ProductCaruosel inLightbox />
+        <ProductCaruosel inLightbox={true} />
       </div>
     </Overlay>
   );
