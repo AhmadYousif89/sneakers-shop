@@ -60,7 +60,7 @@ export const ProductDetails = () => {
       </div>
 
       <div className="grid gap-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between xl:flex-col xl:items-start xl:gap-8">
           <div className="flex items-center gap-8">
             <span className="text-4xl font-bold">${item.price.toFixed(2)}</span>
             <span className="font-bold bg-Pale_orange text-Orange px-3 py-1 rounded-md text-2xl">
@@ -73,45 +73,47 @@ export const ProductDetails = () => {
         </div>
       </div>
 
-      <div className="relative flex items-center justify-between gap-4 bg-Light_grayish_blue py-6 px-4 my-16 rounded-xl">
+      <div className="xl:flex xl:items-center xl:gap-6">
+        <div className="relative flex items-center justify-between gap-4 bg-Light_grayish_blue py-6 px-4 my-16 rounded-xl xl:w-1/2">
+          <Button
+            onClick={() => {
+              setItemQty(pv => (pv > 0 ? --pv : 0));
+              setShowMsg(false);
+            }}
+            className="text-Orange p-2 rounded-full focus-visible:bg-Grayish_blue focus-visible:text-Orange active:translate-y-px hover:bg-Light_grayish_blue">
+            <MinusIcon className="w-7 h-7" />
+          </Button>
+
+          <span className="text-2xl font-bold xl:text-2xl">
+            {itemQty} / {item.availableQty - itemQty}
+          </span>
+
+          <Button
+            onClick={() => {
+              setItemQty(pv => (pv === 10 ? 10 : ++pv));
+              setShowMsg(false);
+            }}
+            className="text-Orange p-2 rounded-full focus-visible:bg-Grayish_blue focus-visible:text-Orange active:translate-y-px hover:bg-Light_grayish_blue">
+            <PlusIcon className="w-7 h-7" />
+          </Button>
+
+          <p
+            className={`absolute top-1/2 left-1/2 -translate-x-1/2 pt-4 text-2xl text-green-500 font-bold capitalize ${
+              showMsg ? 'translate-y-10 opacity-100 visible' : 'opacity-0 invisible'
+            } transition-all duration-[var(--duration)]`}>
+            cart updated
+          </p>
+        </div>
+
         <Button
-          onClick={() => {
-            setItemQty(pv => (pv > 0 ? --pv : 0));
-            setShowMsg(false);
-          }}
-          className="text-Orange p-2 rounded-full focus-visible:bg-Grayish_blue focus-visible:text-Orange active:translate-y-px hover:bg-Light_grayish_blue">
-          <MinusIcon className="w-7 h-7" />
+          hasRipple
+          variant={'cart_chk'}
+          onClick={handleItemToCart}
+          className="flex items-center justify-center gap-8 w-full shadow-xl shadow-Orange/30 xl:w-2/3">
+          <CartIcon className="fill-Light_grayish_blue" />
+          <span>add to cart</span>
         </Button>
-
-        <span className="text-2xl font-bold xl:text-2xl">
-          {itemQty} / {item.availableQty - itemQty}
-        </span>
-
-        <Button
-          onClick={() => {
-            setItemQty(pv => (pv === 10 ? 10 : ++pv));
-            setShowMsg(false);
-          }}
-          className="text-Orange p-2 rounded-full focus-visible:bg-Grayish_blue focus-visible:text-Orange active:translate-y-px hover:bg-Light_grayish_blue">
-          <PlusIcon className="w-7 h-7" />
-        </Button>
-
-        <p
-          className={`absolute top-1/2 left-1/2 -translate-x-1/2 pt-4 text-2xl text-green-500 font-bold capitalize ${
-            showMsg ? 'translate-y-10 opacity-100 visible' : 'opacity-0 invisible'
-          } transition-all duration-[var(--duration)]`}>
-          cart updated
-        </p>
       </div>
-
-      <Button
-        hasRipple
-        variant={'cart_chk'}
-        onClick={handleItemToCart}
-        className="flex items-center justify-center gap-8 w-full shadow-xl shadow-Orange/30">
-        <CartIcon className="fill-Light_grayish_blue" />
-        <span>add to cart</span>
-      </Button>
     </section>
   );
 };
