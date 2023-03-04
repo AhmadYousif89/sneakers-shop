@@ -33,7 +33,7 @@ export const SearchSection = () => {
 
         <Button
           hasRipple
-          className="overflow-hidden pl-4 pr-8 py-4 tracking-wider rounded-xl bg-Very_dark_blue xl:pl-6 xl:py-6">
+          className="overflow-hidden pl-4 pr-8 py-4 tracking-wider rounded-xl focus-visible:ring-2 focus-visible:ring-Light_grayish_blue bg-Very_dark_blue xl:pl-6 xl:py-6">
           Search
         </Button>
       </div>

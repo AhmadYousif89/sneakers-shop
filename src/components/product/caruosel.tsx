@@ -44,7 +44,7 @@ export const ProductCaruosel = ({ inLightbox = false }) => {
           title={'previous image'}
           variant={'caruosel'}
           onClick={displayPrevImage}
-          className={`hidden group-hover:block absolute top-1/2 left-0 translate-x-1/2 -translate-y-1/2 ${
+          className={`xl:hidden group-hover:block absolute top-1/2 left-0 translate-x-1/2 -translate-y-1/2 ${
             inLightbox ? 'block -translate-x-1/2' : ''
           }`}>
           <NavigateBackIcon className="hover:fill-Orange" />
@@ -57,7 +57,7 @@ export const ProductCaruosel = ({ inLightbox = false }) => {
         <Button
           hasRipple
           onClick={() => setLightboxState(true)}
-          className={`absolute overflow-hidden bottom-10 right-10 text-2xl font-bold tracking-wider bg-Very_dark_blue/50 text-Light_grayish_blue rounded-sm p-4 opacity-0 group-hover:opacity-100 group-hover:ring-2 ring-Light_grayish_blue ${
+          className={`hidden xl:block absolute overflow-hidden bottom-10 right-10 text-2xl font-bold tracking-wider bg-Very_dark_blue/50 text-Light_grayish_blue rounded-sm p-4 opacity-0 group-hover:opacity-100 group-hover:ring-2 ring-Light_grayish_blue ${
             inLightbox ? 'hidden' : ''
           }`}>
           Showcase
@@ -66,7 +66,7 @@ export const ProductCaruosel = ({ inLightbox = false }) => {
           title="next image"
           variant={'caruosel'}
           onClick={displayNextImage}
-          className={`hidden group-hover:block absolute top-1/2 right-0 -translate-x-1/2 -translate-y-1/2 rotate-180 ${
+          className={`xl:hidden group-hover:block absolute top-1/2 right-0 -translate-x-1/2 -translate-y-1/2 rotate-180 ${
             inLightbox ? 'block translate-x-1/2' : ''
           }`}>
           <NavigateBackIcon className="hover:fill-Orange" />

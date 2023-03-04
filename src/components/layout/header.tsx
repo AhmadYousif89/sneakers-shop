@@ -65,7 +65,7 @@ export const Header = ({ children }: PropsWithChildren) => {
       <div className="flex items-center gap-8 xl:gap-16">
         <Button
           ref={cartRef}
-          className="relative overflow-auto w-10 h-10 flex-center focus-visible:outline-1">
+          className="relative w-10 h-10 flex-center focus-visible:outline-1">
           {cart.length > 0 && (
             <span className="absolute -top-3 left-3 bg-Orange px-2 min-w-[2.25rem] text-White text-lg rounded-xl flex-center font-bold">
               {totalQty}
