@@ -6,7 +6,7 @@ export const HeroSection = () => {
   return (
     <>
       <div className="hidden xl:grid grid-cols-[.80fr,1fr] bg-gradient-to-br from-Very_dark_blue via-neutral-900 to-Very_dark_blue/95">
-        <figure className="col-start-2 row-span-full bg-Very_dark_blue">
+        <figure className="col-start-2 row-span-full">
           <img src={heroImgWide} alt="main hero image" />
         </figure>
 
