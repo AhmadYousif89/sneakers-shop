@@ -43,7 +43,7 @@ const buttonVariants = cva(
         hero_main:
           'overflow-hidden font-orbitron tracking-wider ring-2 ring-Light_grayish_blue px-6 py-10 capitalize text-3xl rounded-lg hover:ring-Orange focus-visible:bg-Orange focus-visible:ring-0',
         category:
-          'text-xl text-Grayish_blue capitalize px-6 py-4 bg-Light_grayish_blue rounded-full focus-visible:outline-1 focus-visible:outline-Dark_grayish_blue focus-visible:bg-transparent focus-visible:text-Very_dark_blue aria-selected:outline aria-selected:outline-1 aria-selected:outline-Dark_grayish_blue aria-selected:bg-transparent aria-selected:text-Very_dark_blue',
+          'text-xl text-Grayish_blue capitalize px-6 py-4 bg-Light_grayish_blue rounded-full focus-visible:outline-1 focus-visible:outline-Dark_grayish_blue focus-visible:bg-transparent focus-visible:text-Very_dark_blue aria-pressed:outline aria-pressed:outline-1 aria-pressed:outline-Dark_grayish_blue aria-pressed:bg-transparent aria-pressed:text-Very_dark_blue',
         navigation:
           'bg-slate-100 p-2 rounded-xl flex-center fill-Very_dark_blue hover:fill-Dark_grayish_blue focus-visible:fill-Dark_grayish_blue focus-visible:outline-1 focus-visible:outline-Very_dark_blue',
         profile:
@@ -102,9 +102,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         <Link
           {...props}
           to={href}
-          // onMouseDown={e => handleMouseDown(e)}
-          // onTouchStart={handleTouchStart}
-          // onTouchEnd={() => setRipples([])}
+          onMouseDown={e => handleMouseDown(e)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={() => setRipples([])}
           ref={ref as ForwardedRef<HTMLAnchorElement>}
           className={cm(buttonVariants({ variant, size, className }))}>
           {props.children}
@@ -128,9 +128,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         {...props}
         ref={ref as ForwardedRef<HTMLButtonElement>}
-        // onMouseDown={handleMouseDown}
-        // onTouchStart={handleTouchStart}
-        // onTouchEnd={() => setRipples([])}
+        onMouseDown={handleMouseDown}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={() => setRipples([])}
         className={cm(buttonVariants({ variant, size, className }))}>
         {props.children}
         {ripples.map((ripple, idx) => (
