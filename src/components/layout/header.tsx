@@ -57,8 +57,8 @@ export const Header = ({ children }: PropsWithChildren) => {
         <SideNavigation />
 
         <Button href="/home">
-          <span className="sr-only">company logo</span>
-          <img src={logo} alt="company logo" />
+          <span className="sr-only">link with company logo</span>
+          <img src={logo} alt="logo" />
         </Button>
 
         <TopNavigation />

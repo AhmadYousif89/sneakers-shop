@@ -10,8 +10,8 @@ export const Footer = () => {
     <footer className="grid grid-cols-3 gap-y-8 justify-items-center px-8 py-16 mt-auto min-h-[5rem] border-t-2 border-Light_grayish_blue">
       <figure className="row-start-1 col-span-full mb-16">
         <Button href="/">
-          <span className="sr-only">company logo</span>
-          <img src={logo} alt="company logo" aria-hidden />
+          <span className="sr-only">link with company logo</span>
+          <img src={logo} alt="logo" aria-hidden />
         </Button>
       </figure>
 
@@ -21,7 +21,7 @@ export const Footer = () => {
         </li>
         {footer_links.products.map(link => (
           <li key={link.id} className="li-item">
-            <NavLink to={''} className="footer-link">
+            <NavLink to={'/home'} className="footer-link">
               {link.href}
             </NavLink>
           </li>
@@ -34,7 +34,7 @@ export const Footer = () => {
         </li>
         {footer_links.category.map(link => (
           <li key={link.id} className="li-item">
-            <NavLink to={''} className="footer-link">
+            <NavLink to={'/home'} className="footer-link">
               {link.href}
             </NavLink>
           </li>
@@ -47,7 +47,7 @@ export const Footer = () => {
         </li>
         {footer_links.company.map(link => (
           <li key={link.id} className="li-item">
-            <NavLink to={''} className="footer-link">
+            <NavLink to={'/home'} className="footer-link">
               {link.href}
             </NavLink>
           </li>
@@ -60,7 +60,7 @@ export const Footer = () => {
         </li>
         {footer_links.social.map(link => (
           <li key={link.id} title={link.name} className="li-item">
-            <NavLink to={''} className="footer-link">
+            <NavLink to={'/home'} className="footer-link">
               {link.icon}
             </NavLink>
           </li>
