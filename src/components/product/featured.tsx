@@ -4,7 +4,7 @@ import { Button } from '../ui/button';
 export const FeaturedProduct = () => {
   return (
     <section className="mx-8 my-20">
-      <h2 className="text-3xl font-bold capitalize mb-16">today's deal</h2>
+      <h2 className="text-3xl font-bold capitalize mb-16">our season deals</h2>
 
       <div className="flex items-center justify-around gap-8">
         <div className="flex-1 grid gap-y-4 grid-cols-[1fr,minmax(8rem,12rem)] items-center bg-Pale_orange rounded-3xl p-8">
