@@ -5,6 +5,7 @@ export const FacebookIcon = () => {
       height="20"
       viewBox="0 0 19 20"
       fill="none"
+      aria-label="link icon"
       xmlns="http://www.w3.org/2000/svg">
       <path
         fill="currentColor"

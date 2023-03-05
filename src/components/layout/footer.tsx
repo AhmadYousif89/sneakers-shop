@@ -62,7 +62,7 @@ export const Footer = () => {
         {footer_links.social.map(link => (
           <li key={link.id} title={link.name} className="li-item">
             <NavLink id={`${link.name}-link`} to={'/home'} className="footer-link">
-              <span aria-labelledby={`${link.name}-link`}>{link.icon}</span>
+              <span>{link.icon}</span>
               <span className="sr-only">{link.name} link</span>
             </NavLink>
           </li>

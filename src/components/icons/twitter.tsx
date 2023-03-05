@@ -4,6 +4,7 @@ export const TwitterIcon = () => {
       width="17"
       height="15"
       viewBox="0 0 17 15"
+      aria-label="link icon"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
       <path
