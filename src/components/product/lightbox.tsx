@@ -1,21 +1,31 @@
+import { useEffect } from 'react';
 import { useUI } from '../../context/ui.context';
 import { Button } from '../ui/button';
 import { Overlay } from '../ui/overlay';
-import { ProductCaruosel } from './caruosel';
+import { ProductCarousel } from './carousel';
 
 export const Lightbox = () => {
   const { setLightboxState } = useUI();
 
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxState(false);
+    };
+
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, []);
+
   return (
     <Overlay>
-      <div onClick={e => e.stopPropagation()}>
+      <div className="flex flex-col gap-4" onClick={e => e.stopPropagation()}>
         <Button
           title="close lightbox"
           onClick={() => setLightboxState(false)}
-          className={'text-6xl z-50 float-right mb-4 hover:text-Orange'}>
+          className={'text-6xl self-end hover:text-Orange'}>
           &times;
         </Button>
-        <ProductCaruosel inLightbox={true} />
+        <ProductCarousel inLightbox={true} />
       </div>
     </Overlay>
   );

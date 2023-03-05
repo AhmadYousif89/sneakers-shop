@@ -49,8 +49,9 @@ export const Checkout = () => {
           <CheckoutTotal />
         </div>
 
-        <figure className="hidden xl:block max-h-[70rem] bg-Very_dark_blue">
+        <figure className="hidden xl:block min-h-[60rem] bg-Yellowish_orange">
           <img src={sideImg} alt="cart side image" className="object-cover w-full" />
+          <figcaption className="sr-only">checkout side image</figcaption>
         </figure>
       </div>
     </section>

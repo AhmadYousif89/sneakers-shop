@@ -13,6 +13,7 @@ export const CheckoutItem = ({ cartItem }: { cartItem: TCartItem }) => {
       className="bg-Light_grayish_blue shadow-sm px-6 py-4 rounded-3xl flex items-center gap-4 xl:gap-12">
       <figure className="rounded-3xl bg-Grayish_blue w-28 xl:w-36">
         <img src={cartItem.image} alt={cartItem.title} className="w-full rounded-3xl" />
+        <figcaption className="sr-only">product image</figcaption>
       </figure>
 
       <div className="flex flex-col gap-y-2 text-2xl xl:text-3xl">

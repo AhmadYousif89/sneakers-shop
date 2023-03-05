@@ -10,6 +10,7 @@ module.exports = {
         Black: '#000',
         White: '#fff',
         Orange: 'hsl(26, 100%, 55%)',
+        Yellowish_orange: 'hsl(39,98%,45%)',
         Pale_orange: 'hsl(25, 100%, 94%)',
         Grayish_blue: ' hsl(221, 22%, 81%)',
         Very_dark_blue: 'hsl(220, 13%, 13%)',

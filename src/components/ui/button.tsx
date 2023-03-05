@@ -49,7 +49,7 @@ const buttonVariants = cva(
         profile:
           'text-2xl font-bold text-Grayish_blue capitalize border-r-2 border-Grayish_blue text-center w-full last:pr-0 last:border-0 hover:text-Dark_grayish_blue aria-pressed:text-Dark_grayish_blue',
         caruosel:
-          'bg-Light_grayish_blue p-2 rounded-full focus-visible:outline-Light_grayish_blue focus-visible:bg-transparent',
+          'bg-Light_grayish_blue p-2 rounded-full focus-visible:outline-2 focus-visible:outline-Light_grayish_blue focus-visible:bg-transparent',
       },
       size: {},
     },

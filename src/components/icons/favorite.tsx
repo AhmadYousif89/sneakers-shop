@@ -2,6 +2,7 @@ export const FavorIcon = ({ fill = false }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
+      aria-label="like icon"
       className="w-10 h-10 fill-Orange stroke stroke-Orange"
       viewBox="0 96 960 960">
       {fill ? (

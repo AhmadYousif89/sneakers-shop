@@ -1,4 +1,4 @@
-import { ProductCaruosel } from '../components/product/caruosel';
+import { ProductCarousel } from '../components/product/carousel';
 import { ProductDetails } from '../components/product/details';
 import { Lightbox } from '../components/product/lightbox';
 import { useUI } from '../context/ui.context';
@@ -10,7 +10,7 @@ export const Product = () => {
 
   return (
     <section className="xl:grid grid-cols-2 justify-items-center xl:my-40">
-      <ProductCaruosel />
+      <ProductCarousel />
       <ProductDetails />
       {lightboxIsOpen && <Lightbox />}
     </section>
