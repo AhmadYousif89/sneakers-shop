@@ -45,7 +45,7 @@ export const ProductDetails = () => {
   };
 
   return (
-    <section className="m-8 mb-40 xl:max-w-3xl xl:m-0">
+    <section className="m-8 mb-40 justify-self-start xl:max-w-3xl xl:m-0">
       <div className="grid gap-4 mb-16">
         <h3 className="text-xl text-Orange/80 tracking-wider font-bold uppercase">
           sneaker company

@@ -13,7 +13,7 @@ export const Card: FC<PropsWithChildren<CardProps>> = ({
   return (
     <div
       onClick={onClick}
-      className={`${className} bg-White drop-shadow-xl shadow-Orange rounded-xl`}>
+      className={`${className} z-[100] bg-White drop-shadow-xl shadow-Orange rounded-xl`}>
       {children}
     </div>
   );
