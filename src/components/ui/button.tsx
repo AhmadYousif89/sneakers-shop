@@ -31,7 +31,7 @@ type ButtonProps = {
   VariantProps<typeof buttonVariants>;
 
 const buttonVariants = cva(
-  'relative block text-2xl text-Light_grayish_blue text-center transition-all focus:outline-none focus-visible:outline-offset-0',
+  'relative block text-2xl text-Light_grayish_blue text-center transition-all outline-none outline-offset-0 focus:outline-none focus-visible:outline-offset-0 focus-visible:outline-1 focus-visible:outline-Dark_grayish_blue',
   {
     variants: {
       variant: {

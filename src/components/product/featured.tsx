@@ -22,6 +22,7 @@ export const FeaturedProduct = () => {
 
           <figure className="col-start-2">
             <img src={img} alt="display sneaker" className="rounded-full" />
+            <figcaption className="sr-only">featured sneaker image</figcaption>
           </figure>
         </div>
 
@@ -40,6 +41,7 @@ export const FeaturedProduct = () => {
 
           <figure className="col-start-2">
             <img src={img} alt="display sneaker" className="rounded-full" />
+            <figcaption className="sr-only">featured sneaker image</figcaption>
           </figure>
         </div>
 
@@ -58,6 +60,7 @@ export const FeaturedProduct = () => {
 
           <figure className="col-start-2">
             <img src={img} alt="display sneaker" className="rounded-full" />
+            <figcaption className="sr-only">featured sneaker image</figcaption>
           </figure>
         </div>
       </div>

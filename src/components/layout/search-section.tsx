@@ -17,6 +17,7 @@ export const SearchSection = () => {
             className="w-full rounded-xl px-8 py-4 bg-Light_grayish_blue caret-Orange text-Dark_grayish_blue text-2xl placeholder:text-xl focus-visible:outline-none focus-visible:outline-2 focus-visible:outline-Dark_grayish_blue focus-visible:outline-offset-0 xl:py-6 xl:px-16 xl:text-3xl xl:placeholder:text-2xl"
           />
           <svg
+            aria-labelledby="search"
             className="absolute w-10 h-10 border-l-Grayish_blue border-l-2 right-5 pl-2 stroke-Orange xl:w-14 xl:h-14 xl:pl-4"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

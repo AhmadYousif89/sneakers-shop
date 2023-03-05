@@ -65,24 +65,24 @@ export const Header = ({ children }: PropsWithChildren) => {
       </div>
 
       <div className="flex items-center gap-8 xl:gap-16">
-        <Button
-          ref={cartRef}
-          className="relative w-10 h-10 flex-center focus-visible:outline-1">
+        <Button ref={cartRef} className="relative w-10 h-10 flex-center">
           {cart.length > 0 && (
             <span className="absolute -top-3 left-3 bg-Orange px-2 min-w-[2.25rem] text-White text-lg rounded-xl flex-center font-bold">
               {totalQty}
             </span>
           )}
-          <span className="sr-only">shopping cart displaying the items quantity</span>
+          <span className="sr-only">_number of items quantity in cart</span>
           <CartIcon />
         </Button>
 
-        <Button ref={profileRef} className="hover:ring-2 hover:ring-Orange rounded-full">
+        <Button
+          ref={profileRef}
+          className="hover:ring-2 hover:ring-Orange rounded-full focus-visible:outline-2 focus-visible:outline-Orange">
           <span className="sr-only">profile image</span>
           <img
             className="h-12 xl:h-16"
-            src={profileImg}
             alt="user profile icon"
+            src={profileImg}
             aria-hidden
           />
         </Button>

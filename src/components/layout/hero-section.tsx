@@ -7,7 +7,8 @@ export const HeroSection = () => {
     <>
       <div className="hidden xl:grid grid-cols-[.80fr,1fr] bg-gradient-to-br from-Very_dark_blue via-neutral-900 to-Very_dark_blue/95">
         <figure className="col-start-2 row-span-full">
-          <img src={heroImgWide} alt="main hero image" />
+          <img src={heroImgWide} alt="hero image" />
+          <figcaption className="sr-only">main hero image</figcaption>
         </figure>
 
         <div className="pl-20 text-Light_grayish_blue col-span-full row-start-1 flex flex-col gap-60">
@@ -33,8 +34,9 @@ export const HeroSection = () => {
         <img
           className={`min-h-[40rem] max-h-[80rem] w-full object-cover xl:hidden`}
           src={heroImg}
-          alt="hero sneaker"
+          alt="hero image"
         />
+        <figcaption className="sr-only">main hero image for mobile</figcaption>
       </figure>
     </>
   );

@@ -12,7 +12,7 @@ export const Lightbox = () => {
         <Button
           title="close lightbox"
           onClick={() => setLightboxState(false)}
-          className={'text-6xl z-50 float-right mb-4 outline-none hover:text-Orange'}>
+          className={'text-6xl z-50 float-right mb-4 hover:text-Orange'}>
           &times;
         </Button>
         <ProductCaruosel inLightbox={true} />

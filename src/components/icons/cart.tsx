@@ -5,6 +5,7 @@ export const CartIcon = ({ className = 'fill-Dark_grayish_blue' }) => {
       height="20"
       fill="none"
       className={className}
+      aria-label="cart icon"
       xmlns="http://www.w3.org/2000/svg">
       <path
         fillRule="nonzero"

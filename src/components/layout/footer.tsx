@@ -13,6 +13,7 @@ export const Footer = () => {
           <span className="sr-only">link with company logo</span>
           <img src={logo} alt="logo" aria-hidden />
         </Button>
+        <figcaption className="sr-only">company logo image</figcaption>
       </figure>
 
       <ul className="grid gap-4 justify-items-center">
@@ -60,8 +61,8 @@ export const Footer = () => {
         </li>
         {footer_links.social.map(link => (
           <li key={link.id} title={link.name} className="li-item">
-            <NavLink to={'/home'} className="footer-link">
-              {link.icon}
+            <NavLink id={`${link.name}-link`} to={'/home'} className="footer-link">
+              <span aria-labelledby={`${link.name}-link`}>{link.icon}</span>
               <span className="sr-only">{link.name} link</span>
             </NavLink>
           </li>

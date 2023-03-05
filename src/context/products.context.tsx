@@ -1,5 +1,6 @@
 import {
   PropsWithChildren,
+  SetStateAction,
   createContext,
   useCallback,
   useContext,
@@ -13,18 +14,21 @@ type InitProductState = {
   products: TProduct[];
   isLoading: boolean;
   selectedCategory: TProductCategory;
+  curImageIdx: number;
 };
 
 const initState: InitProductState = {
   products,
   isLoading: false,
   selectedCategory: 'sports',
+  curImageIdx: 0,
 };
 
 const initContext: UseProductContext = {
   state: initState,
   setSelectedCategory: () => {},
   setProductIsLoading: () => {},
+  setProductCurImage: () => {},
 };
 
 const ProductContext = createContext<UseProductContext>(initContext);
@@ -42,18 +46,30 @@ type UseProductContext = ReturnType<typeof useProductContext>;
 const useProductContext = (initState: InitProductState) => {
   const [category, setCategory] = useState(initState.selectedCategory);
   const [isLoading, setIsLoading] = useState(initState.isLoading);
+  const [curImageIdx, setCurImageIdx] = useState(initState.curImageIdx);
 
   const setSelectedCategory = useCallback(
     (category: TProductCategory) => setCategory(category),
     [],
   );
+
   const setProductIsLoading = useCallback(
     (isLoading: boolean) => setIsLoading(isLoading),
     [],
   );
 
-  const state = { products: initState.products, selectedCategory: category, isLoading };
-  return { state, setSelectedCategory, setProductIsLoading };
+  const setProductCurImage = useCallback(
+    (curImage: SetStateAction<number>) => setCurImageIdx(curImage),
+    [],
+  );
+
+  const state = {
+    products: initState.products,
+    selectedCategory: category,
+    curImageIdx,
+    isLoading,
+  };
+  return { state, setSelectedCategory, setProductIsLoading, setProductCurImage };
 };
 
 export const useProducts = () => useContext(ProductContext);

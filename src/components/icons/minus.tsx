@@ -3,6 +3,7 @@ export const MinusIcon = ({ className = 'w-5 h-5' }) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
+      aria-label="decrease quantity"
       viewBox="0 0 24 24"
       strokeWidth={4}
       stroke="currentColor"
