@@ -28,12 +28,10 @@ export const ProductCarousel = ({ inLightbox = false }) => {
   } = useProducts();
 
   const displayPrevImage = () => {
-    if (inLightbox) return;
     setProductCurImage(pv => (pv === 0 ? sneakerImgs.length - 1 : --pv));
   };
 
   const displayNextImage = () => {
-    if (inLightbox) return;
     setProductCurImage(pv => (pv === sneakerImgs.length - 1 ? 0 : ++pv));
   };
 
@@ -44,6 +42,7 @@ export const ProductCarousel = ({ inLightbox = false }) => {
           prevBtnRef.current.blur();
           nextBtnRef.current.focus();
         }
+        if (inLightbox) return;
         displayPrevImage();
       }
       if (e.key === 'ArrowRight') {
@@ -51,6 +50,7 @@ export const ProductCarousel = ({ inLightbox = false }) => {
           nextBtnRef.current.blur();
           prevBtnRef.current.focus();
         }
+        if (inLightbox) return;
         displayNextImage();
       }
     };
@@ -67,7 +67,7 @@ export const ProductCarousel = ({ inLightbox = false }) => {
           variant={'caruosel'}
           title={'previous image'}
           onClick={displayPrevImage}
-          className={`xl:hidden group-hover:block z-10 absolute top-1/2 left-0 translate-x-1/2 -translate-y-1/2 ${
+          className={`xl:hidden group-hover:block z-30 absolute top-1/2 left-0 translate-x-1/2 -translate-y-1/2 ${
             inLightbox ? 'xl:block -translate-x-1/2' : ''
           }`}>
           <span className="sr-only">go to previuos image</span>
@@ -108,7 +108,7 @@ export const ProductCarousel = ({ inLightbox = false }) => {
           title="next image"
           variant={'caruosel'}
           onClick={displayNextImage}
-          className={`xl:hidden group-hover:block z-10 absolute top-1/2 right-0 -translate-x-1/2 -translate-y-1/2 rotate-180 ${
+          className={`xl:hidden group-hover:block z-30 absolute top-1/2 right-0 -translate-x-1/2 -translate-y-1/2 rotate-180 ${
             inLightbox ? 'xl:block translate-x-1/2' : ''
           }`}>
           <span className="sr-only">go to next image</span>
