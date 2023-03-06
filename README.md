@@ -20,9 +20,13 @@ This is a solution to the [E-commerce product page challenge on Frontend Mentor]
 
 ### Screenshot
 
-- To be added
+- Desktop Preview
 
-  ![](./screenshot.jpg)
+  ![desktop preview](./public/screenshots/desktop.png)
+
+- Mobile Preview
+
+  ![mobile preview](./public/screenshots/mobile.png)
 
 ### Links
 
@@ -31,10 +35,12 @@ This is a solution to the [E-commerce product page challenge on Frontend Mentor]
 
 ### Built with
 
-- Semantic HTML5 markup
 - Flexbox
 - CSS Grid
+- Semantic HTML5 markup
 - Mobile-first workflow
+
+- Typescript
 - [Vite](https://vitejs.dev/) - Dev environment
 - [React](https://reactjs.org/) - JS framework
 - [TailwindCss](https://tailwindcss.com/) - Css library

@@ -80,7 +80,7 @@ export const ProductCarousel = ({ inLightbox = false }) => {
               key={idx}
               src={image}
               alt="sneakers image"
-              className={`transition-transform duration-500 ease-in-out`}
+              className="transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${curImageIdx * 100}%)` }}
             />
           ))}
