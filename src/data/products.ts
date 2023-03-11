@@ -35,7 +35,6 @@ export const products: TProduct[] = [
     category: 'sports',
     inStock: true,
     discountedPrice: 99.6,
-    isFavorite: false,
   },
   {
     id: 2,
@@ -51,7 +50,6 @@ export const products: TProduct[] = [
     category: 'running',
     inStock: true,
     discountedPrice: 160.2,
-    isFavorite: false,
   },
   {
     id: 3,
@@ -67,7 +65,6 @@ export const products: TProduct[] = [
     category: 'running',
     inStock: true,
     discountedPrice: 67.5,
-    isFavorite: false,
   },
   {
     id: 4,
@@ -83,7 +80,6 @@ export const products: TProduct[] = [
     category: 'sports',
     inStock: true,
     discountedPrice: 148.75,
-    isFavorite: false,
   },
   {
     id: 5,
@@ -99,7 +95,6 @@ export const products: TProduct[] = [
     category: 'training',
     inStock: true,
     discountedPrice: 104,
-    isFavorite: false,
   },
   {
     id: 6,
@@ -115,7 +110,6 @@ export const products: TProduct[] = [
     category: 'fashion',
     inStock: true,
     discountedPrice: 80,
-    isFavorite: false,
   },
   {
     id: 7,
@@ -131,7 +125,6 @@ export const products: TProduct[] = [
     category: 'training',
     inStock: true,
     discountedPrice: 117,
-    isFavorite: false,
   },
   {
     id: 8,
@@ -147,7 +140,6 @@ export const products: TProduct[] = [
     category: 'running',
     inStock: true,
     discountedPrice: 66.5,
-    isFavorite: false,
   },
   {
     id: 9,
@@ -163,7 +155,6 @@ export const products: TProduct[] = [
     category: 'running',
     inStock: true,
     discountedPrice: 140.8,
-    isFavorite: false,
   },
   {
     id: 10,
@@ -179,7 +170,6 @@ export const products: TProduct[] = [
     category: 'sports',
     inStock: true,
     discountedPrice: 92,
-    isFavorite: false,
   },
   {
     id: 11,
@@ -195,7 +185,6 @@ export const products: TProduct[] = [
     category: 'fashion',
     inStock: true,
     discountedPrice: 130,
-    isFavorite: false,
   },
   {
     id: 12,
@@ -211,7 +200,6 @@ export const products: TProduct[] = [
     category: 'gym',
     inStock: true,
     discountedPrice: 55.25,
-    isFavorite: false,
   },
   {
     id: 13,
@@ -227,7 +215,6 @@ export const products: TProduct[] = [
     category: 'running',
     inStock: true,
     discountedPrice: 144,
-    isFavorite: false,
   },
   {
     id: 14,
@@ -243,7 +230,6 @@ export const products: TProduct[] = [
     category: 'training',
     inStock: true,
     discountedPrice: 130,
-    isFavorite: false,
   },
   {
     id: 15,
@@ -259,7 +245,6 @@ export const products: TProduct[] = [
     category: 'sports',
     inStock: true,
     discountedPrice: 150,
-    isFavorite: false,
   },
   {
     id: 16,
@@ -275,7 +260,6 @@ export const products: TProduct[] = [
     category: 'sports',
     inStock: true,
     discountedPrice: 152,
-    isFavorite: false,
   },
   {
     id: 17,
@@ -291,7 +275,6 @@ export const products: TProduct[] = [
     category: 'gym',
     inStock: true,
     discountedPrice: 165.6,
-    isFavorite: false,
   },
   {
     id: 18,
@@ -307,7 +290,6 @@ export const products: TProduct[] = [
     category: 'training',
     inStock: true,
     discountedPrice: 108,
-    isFavorite: false,
   },
   {
     id: 19,
@@ -323,7 +305,6 @@ export const products: TProduct[] = [
     category: 'fashion',
     inStock: true,
     discountedPrice: 75,
-    isFavorite: false,
   },
   {
     id: 20,
@@ -339,7 +320,6 @@ export const products: TProduct[] = [
     category: 'fashion',
     inStock: true,
     discountedPrice: 55.25,
-    isFavorite: false,
   },
   {
     id: 21,
@@ -355,7 +335,6 @@ export const products: TProduct[] = [
     category: 'fashion',
     inStock: true,
     discountedPrice: 80,
-    isFavorite: false,
   },
   {
     id: 22,
@@ -371,7 +350,6 @@ export const products: TProduct[] = [
     category: 'gym',
     inStock: true,
     discountedPrice: 110,
-    isFavorite: false,
   },
   {
     id: 23,
@@ -387,7 +365,6 @@ export const products: TProduct[] = [
     category: 'gym',
     inStock: true,
     discountedPrice: 135,
-    isFavorite: false,
   },
   {
     id: 24,
@@ -403,7 +380,6 @@ export const products: TProduct[] = [
     category: 'gym',
     inStock: true,
     discountedPrice: 171,
-    isFavorite: false,
   },
   {
     id: 25,
@@ -419,6 +395,5 @@ export const products: TProduct[] = [
     category: 'training',
     inStock: true,
     discountedPrice: 130,
-    isFavorite: false,
   },
 ];

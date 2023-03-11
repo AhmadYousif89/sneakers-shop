@@ -12,6 +12,5 @@ export type TProduct = {
   discountedPrice: number;
   discountPercentage: number;
   category: TProductCategory;
-  isFavorite: boolean;
   inStock: boolean;
 };
