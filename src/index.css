@@ -6,19 +6,16 @@
 @tailwind components;
 
 @layer base {
+  * {
+    outline: transparent;
+  }
   :root {
     font-size: 62.5%;
     --duration: 300ms;
     -webkit-tap-highlight-color: transparent;
   }
-
   body {
     @apply bg-White font-kumbh;
-  }
-
-  a:focus-visible,
-  img:focus-visible {
-    outline: none;
   }
 }
 

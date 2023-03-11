@@ -1,5 +1,5 @@
 import { useCart } from '../../context/cart.context';
-import { TCartItem } from '../../types/cart.type';
+import { TCartItem } from '../../types/TCartItem';
 import { MinusIcon } from '../icons/minus';
 import { PlusIcon } from '../icons/plus';
 import { Button } from '../ui/button';
@@ -12,7 +12,11 @@ export const CheckoutItem = ({ cartItem }: { cartItem: TCartItem }) => {
       key={cartItem.id}
       className="bg-Light_grayish_blue shadow-sm px-6 py-4 rounded-3xl flex items-center gap-4 xl:gap-12">
       <figure className="rounded-3xl bg-Grayish_blue w-28 xl:w-36">
-        <img src={cartItem.image} alt={cartItem.title} className="w-full rounded-3xl" />
+        <img
+          alt={cartItem.title}
+          src={cartItem.image.thumb}
+          className="w-full rounded-3xl"
+        />
         <figcaption className="sr-only">product image</figcaption>
       </figure>
 

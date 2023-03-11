@@ -8,13 +8,13 @@ export const SearchSection = () => {
       </h2>
       <div className="flex items-center w-10/12 gap-4 mx-auto xl:gap-8 xl:max-w-4xl">
         <label
-          className="relative w-full flex items-center cursor-pointer"
+          className="relative flex-1 flex items-center cursor-pointer"
           htmlFor="search">
           <input
             id="search"
             type="text"
             placeholder="Type here"
-            className="w-full rounded-xl px-8 py-4 bg-Light_grayish_blue caret-Orange text-Dark_grayish_blue text-2xl placeholder:text-xl focus-visible:outline-none focus-visible:outline-2 focus-visible:outline-Dark_grayish_blue focus-visible:outline-offset-0 xl:py-6 xl:px-16 xl:text-3xl xl:placeholder:text-2xl"
+            className="flex-1 rounded-xl px-8 py-4 bg-Light_grayish_blue caret-Orange text-Dark_grayish_blue text-2xl placeholder:text-xl focus-visible:outline-none focus-visible:outline-2 focus-visible:outline-Dark_grayish_blue focus-visible:outline-offset-0 xl:py-6 xl:px-16 xl:text-3xl xl:placeholder:text-2xl"
           />
           <svg
             aria-labelledby="search"
@@ -34,7 +34,7 @@ export const SearchSection = () => {
 
         <Button
           hasRipple
-          className="overflow-hidden pl-4 pr-8 py-4 tracking-wider rounded-xl focus-visible:ring-2 focus-visible:ring-Light_grayish_blue bg-Very_dark_blue xl:pl-6 xl:py-6">
+          className="overflow-hidden px-6 py-4 tracking-wider rounded-xl focus-visible:ring-2 focus-visible:ring-Light_grayish_blue bg-Very_dark_blue xl:py-6 xl:px-8">
           Search
         </Button>
       </div>

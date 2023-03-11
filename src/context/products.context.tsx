@@ -4,8 +4,8 @@ import {
   createContext,
   useCallback,
   useContext,
+  useReducer,
   useState,
-  FC,
 } from 'react';
 import { TProduct, TProductCategory } from '../types/product.type';
 import { products } from '../data/products';
@@ -13,27 +13,27 @@ import { products } from '../data/products';
 type InitProductState = {
   products: TProduct[];
   isLoading: boolean;
-  selectedCategory: TProductCategory;
   curImageIdx: number;
+  selectedCategory: TProductCategory;
 };
 
 const initState: InitProductState = {
   products,
   isLoading: false,
-  selectedCategory: 'sports',
   curImageIdx: 0,
+  selectedCategory: 'sports',
 };
 
 const initContext: UseProductContext = {
   state: initState,
+  curImageHandler: () => {},
   setSelectedCategory: () => {},
   setProductIsLoading: () => {},
-  setProductCurImage: () => {},
 };
 
 const ProductContext = createContext<UseProductContext>(initContext);
 
-export const ProductCtxProvider: FC<PropsWithChildren> = ({ children }) => {
+export const ProductCtxProvider = ({ children }: PropsWithChildren) => {
   return (
     <ProductContext.Provider value={useProductContext(initState)}>
       {children}
@@ -41,35 +41,50 @@ export const ProductCtxProvider: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
+type ReducerActions =
+  | { type: 'select_category'; payload: TProductCategory }
+  | { type: 'loading_items'; payload: boolean };
+
+const reducer = (state: InitProductState, { type, payload }: ReducerActions) => {
+  switch (type) {
+    case 'select_category': {
+      return { ...state, selectedCategory: payload };
+    }
+    case 'loading_items': {
+      return { ...state, isLoading: payload };
+    }
+    default:
+      throw new Error('Invalid action type');
+  }
+};
+
 type UseProductContext = ReturnType<typeof useProductContext>;
 
 const useProductContext = (initState: InitProductState) => {
-  const [category, setCategory] = useState(initState.selectedCategory);
-  const [isLoading, setIsLoading] = useState(initState.isLoading);
-  const [curImageIdx, setCurImageIdx] = useState(initState.curImageIdx);
+  const [state, dispatch] = useReducer(reducer, initState);
+  const [curImageIdx, setCurImageIdx] = useState(0);
 
   const setSelectedCategory = useCallback(
-    (category: TProductCategory) => setCategory(category),
+    (payload: TProductCategory) => dispatch({ type: 'select_category', payload }),
     [],
   );
 
   const setProductIsLoading = useCallback(
-    (isLoading: boolean) => setIsLoading(isLoading),
+    (payload: boolean) => dispatch({ type: 'loading_items', payload }),
     [],
   );
 
-  const setProductCurImage = useCallback(
-    (curImage: SetStateAction<number>) => setCurImageIdx(curImage),
+  const curImageHandler = useCallback(
+    (payload: SetStateAction<number>) => setCurImageIdx(payload),
     [],
   );
 
-  const state = {
-    products: initState.products,
-    selectedCategory: category,
-    curImageIdx,
-    isLoading,
+  return {
+    state: { ...state, curImageIdx },
+    curImageHandler,
+    setProductIsLoading,
+    setSelectedCategory,
   };
-  return { state, setSelectedCategory, setProductIsLoading, setProductCurImage };
 };
 
 export const useProducts = () => useContext(ProductContext);

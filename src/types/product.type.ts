@@ -1,8 +1,9 @@
+type TProductImage = { full: string | string[]; thumb: string | string[] };
 export type TProductCategory = 'sports' | 'fashion' | 'gym' | 'running' | 'training';
 export type TProduct = {
   id: number;
   title: string;
-  image: string;
+  image: TProductImage;
   size: string;
   color: string;
   price: number;
@@ -11,5 +12,6 @@ export type TProduct = {
   discountedPrice: number;
   discountPercentage: number;
   category: TProductCategory;
+  isFavorite: boolean;
   inStock: boolean;
 };

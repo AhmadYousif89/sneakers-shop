@@ -5,6 +5,7 @@ import App from './App';
 import { CartCtxProvider } from './context/cart.context';
 import { ProductCtxProvider } from './context/products.context';
 import { UICtxProvider } from './context/ui.context';
+import { UserCtxProvider } from './context/user.context';
 import './index.css';
 
 const container = document.getElementById('root') as HTMLElement;
@@ -14,11 +15,13 @@ Root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ProductCtxProvider>
-        <CartCtxProvider>
-          <UICtxProvider>
-            <App />
-          </UICtxProvider>
-        </CartCtxProvider>
+        <UserCtxProvider>
+          <CartCtxProvider>
+            <UICtxProvider>
+              <App />
+            </UICtxProvider>
+          </CartCtxProvider>
+        </UserCtxProvider>
       </ProductCtxProvider>
     </BrowserRouter>
   </React.StrictMode>,

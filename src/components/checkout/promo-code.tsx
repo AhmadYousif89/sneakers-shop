@@ -3,7 +3,7 @@ import { Button } from '../ui/button';
 export const PromoCodeInput = () => {
   return (
     <div className="flex justify-between items-center my-8 max-w-xl mx-auto xl:my-16">
-      <label htmlFor="promo-code" className="peer w-full">
+      <label htmlFor="promo-code" className="peer flex-1">
         <input
           id="promo-code"
           type="text"

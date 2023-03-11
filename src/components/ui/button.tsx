@@ -1,10 +1,9 @@
 import {
   useRef,
   useState,
-  TouchEvent,
-  MouseEvent,
   forwardRef,
   ForwardedRef,
+  PointerEventHandler,
   ButtonHTMLAttributes,
   AnchorHTMLAttributes,
 } from 'react';
@@ -15,20 +14,14 @@ import { cm } from '../../utils/class-merger';
 type Ripple = { size: number; x: number; y: number };
 type LinkHrefs = '/home' | '/product' | '/success' | '/checkout' | '/' | '';
 
-type Events =
-  | MouseEvent<HTMLButtonElement | HTMLAnchorElement>
-  | TouchEvent<HTMLButtonElement | HTMLAnchorElement>;
-
 interface ButtonAttributes extends ButtonHTMLAttributes<HTMLButtonElement> {}
 interface LinkAttributes extends AnchorHTMLAttributes<HTMLAnchorElement> {}
 
-//prettier-ignore
+// prettier-ignore
 type ButtonProps = {
   href?: LinkHrefs;
   hasRipple?:boolean;
-} & ButtonAttributes &
-  LinkAttributes &
-  VariantProps<typeof buttonVariants>;
+} & ButtonAttributes & LinkAttributes & VariantProps<typeof buttonVariants>;
 
 const buttonVariants = cva(
   'relative block text-2xl text-Light_grayish_blue text-center transition-all outline-none outline-offset-0 focus:outline-none focus-visible:outline-offset-0 focus-visible:outline-1 focus-visible:outline-Dark_grayish_blue',
@@ -47,7 +40,7 @@ const buttonVariants = cva(
         navigation:
           'bg-slate-100 p-2 rounded-xl flex-center fill-Very_dark_blue hover:fill-Dark_grayish_blue focus-visible:fill-Dark_grayish_blue focus-visible:outline-1 focus-visible:outline-Very_dark_blue',
         profile:
-          'text-2xl font-bold text-Grayish_blue capitalize border-r-2 border-Grayish_blue text-center w-full last:pr-0 last:border-0 hover:text-Dark_grayish_blue aria-pressed:text-Dark_grayish_blue',
+          'flex-1 flex items-center justify-center text-2xl font-bold text-Grayish_blue capitalize xl:border-r-2 xl:border-Grayish_blue text-center last:pr-0 last:border-0 hover:text-Dark_grayish_blue aria-pressed:text-Dark_grayish_blue',
         caruosel:
           'bg-Light_grayish_blue p-2 rounded-full focus-visible:outline-2 focus-visible:outline-Light_grayish_blue focus-visible:bg-transparent',
       },
@@ -61,65 +54,49 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const [ripples, setRipples] = useState<Ripple[]>([]);
     const timeoutRef = useRef<number | undefined>();
 
-    const handleRippleEvent = (e: Events) => {
-      if (!e.currentTarget || !hasRipple) return;
+    const onPointerDown: PointerEventHandler<
+      HTMLButtonElement | HTMLAnchorElement
+    > = e => {
+      e.preventDefault();
+      if (!hasRipple) return;
 
       const button = e.currentTarget;
-      const size = Math.max(button.offsetWidth, button.offsetHeight);
-      let x = 0;
-      let y = 0;
+      const rippleSize = Math.max(button.offsetWidth, button.offsetHeight);
+      const rect = button.getBoundingClientRect();
+      const x = e.clientX - rect.left - rippleSize / 2;
+      const y = e.clientY - rect.top - rippleSize / 2;
+      const ripple: Ripple = { size: rippleSize, x, y };
+      setRipples(pv => [...pv, ripple]);
 
-      if ('clientX' in e) {
-        const rect = button.getBoundingClientRect();
-        x = e.clientX - rect.left - size / 2;
-        y = e.clientY - rect.top - size / 2;
-        const ripple: Ripple = { size, x, y };
-        setRipples(pv => [...pv, ripple]);
-      }
-
-      if ('touches' in e) {
-        const rect = button.getBoundingClientRect();
-        x = e.touches[0].clientX - rect.left - size / 2;
-        y = e.touches[0].clientY - rect.top - size / 2;
-        const ripple: Ripple = { size, x, y };
-        setRipples(pv => [...pv, ripple]);
-      }
-    };
-
-    const handleMouseDown = (e: Events) => {
-      handleRippleEvent(e);
       clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => {
         setRipples([]);
       }, 1000);
     };
-    const handleTouchStart = (e: Events) => {
-      handleRippleEvent(e);
-    };
+
+    const ripElements = ripples.map((ripple, idx) => (
+      <span
+        key={idx}
+        className="absolute bg-Pale_orange rounded-full pointer-events-none animate-ripple"
+        style={{
+          top: ripple.y,
+          left: ripple.x,
+          width: ripple.size,
+          height: ripple.size,
+        }}
+      />
+    ));
 
     if (href) {
       return (
         <Link
           to={href}
-          onMouseDown={e => handleMouseDown(e)}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={() => setRipples([])}
+          onPointerDown={onPointerDown}
           ref={ref as ForwardedRef<HTMLAnchorElement>}
           className={cm(buttonVariants({ variant, size, className }))}
           {...props}>
           {props.children}
-          {ripples.map((ripple, idx) => (
-            <span
-              key={idx}
-              className="absolute bg-Pale_orange rounded-full animate-ripple"
-              style={{
-                top: ripple.y,
-                left: ripple.x,
-                width: ripple.size,
-                height: ripple.size,
-              }}
-            />
-          ))}
+          {ripElements}
         </Link>
       );
     }
@@ -127,24 +104,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref as ForwardedRef<HTMLButtonElement>}
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={() => setRipples([])}
+        onPointerDown={onPointerDown}
         className={cm(buttonVariants({ variant, size, className }))}
         {...props}>
         {props.children}
-        {ripples.map((ripple, idx) => (
-          <span
-            key={idx}
-            className="absolute bg-white rounded-full animate-ripple"
-            style={{
-              top: ripple.y,
-              left: ripple.x,
-              width: ripple.size,
-              height: ripple.size,
-            }}
-          />
-        ))}
+        {ripElements}
       </button>
     );
   },

@@ -1,39 +1,20 @@
 import { useEffect, useState } from 'react';
 
+import { MinusIcon, PlusIcon, CartIcon } from '../icons';
+import { product } from '../../data/featured-product';
 import { useCart } from '../../context/cart.context';
-import { TCartItem } from '../../types/cart.type';
-import { MinusIcon } from '../icons/minus';
-import { PlusIcon } from '../icons/plus';
 import { Button } from '../ui/button';
-
-import p1_1000 from '../../assets/images/p1-1000.jpg';
-import { CartIcon } from '../icons/cart';
-
-const item: TCartItem = {
-  id: 3,
-  qty: 0,
-  price: 125,
-  discountPercentage: 0.5,
-  title: 'fall limited edition sneakers',
-  image: p1_1000,
-  availableQty: 10,
-  color: 'white',
-  size: 'US-10',
-};
+import { TCartItem } from '../../types';
 
 export const ProductDetails = () => {
-  const [showMsg, setShowMsg] = useState(false);
   const {
     state: { cart },
     addCartItem,
   } = useCart();
-  const itemInCart = cart.find(i => i.id === item.id);
-  const [itemQty, setItemQty] = useState(0);
-
-  useEffect(() => {
-    if (!itemInCart) return;
-    setItemQty(itemInCart.qty);
-  }, [itemInCart?.qty]);
+  const itemInCart = cart.find(i => i.id === product.id);
+  const qty = itemInCart ? itemInCart.qty : 0;
+  const [itemQty, setItemQty] = useState(qty);
+  const [showMsg, setShowMsg] = useState(false);
 
   const handleItemToCart = () => {
     if (itemQty === 0 || itemQty === itemInCart?.qty) {
@@ -41,7 +22,18 @@ export const ProductDetails = () => {
       return;
     }
     setShowMsg(true);
-    addCartItem({ ...item, qty: itemQty });
+    const cartItem: TCartItem = {
+      id: product.id,
+      qty: itemQty,
+      title: product.title,
+      price: product.discountedPrice,
+      image: { full: '', thumb: product.image.thumb[0] },
+      size: product.size,
+      color: product.color,
+      availableQty: product.availableQty,
+      discountPercentage: product.discountPercentage,
+    };
+    addCartItem(cartItem);
   };
 
   return (
@@ -51,24 +43,23 @@ export const ProductDetails = () => {
           sneaker company
         </h3>
         <h2 className="text-5xl text-Very_dark_blue font-bold capitalize mb-4">
-          {item.title}
+          {product.title}
         </h2>
-        <p className="text-[1.6rem] text-Dark_grayish_blue/80">
-          These low-profile sneakers are your perfect casual wear companion. Featuring a
-          durable ruber outer sole, they'll withstand everything the weather can offer.
-        </p>
+        <p className="text-[1.6rem] text-Dark_grayish_blue/80">{product.description}</p>
       </div>
 
       <div className="grid gap-8">
         <div className="flex items-center justify-between xl:flex-col xl:items-start xl:gap-8">
           <div className="flex items-center gap-8">
-            <span className="text-4xl font-bold">${item.price.toFixed(2)}</span>
+            <span className="text-4xl font-bold">
+              ${product.discountedPrice.toFixed(2)}
+            </span>
             <span className="font-bold bg-Pale_orange text-Orange px-3 py-1 rounded-md text-2xl">
-              {item.discountPercentage * 100}%
+              {product.discountPercentage * 100}%
             </span>
           </div>
           <span className="text-2xl text-Grayish_blue font-bold line-through">
-            ${(item.price / item.discountPercentage).toFixed(2)}
+            ${product.price.toFixed(2)}
           </span>
         </div>
       </div>
@@ -85,7 +76,7 @@ export const ProductDetails = () => {
           </Button>
 
           <span className="text-2xl font-bold xl:text-2xl">
-            {itemQty} / {item.availableQty - itemQty}
+            {itemQty} / {product.availableQty - itemQty}
           </span>
 
           <Button

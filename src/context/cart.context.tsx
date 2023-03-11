@@ -7,7 +7,7 @@ import {
   FC,
 } from 'react';
 import { cartItems } from '../data/cart-items';
-import { TCartItem } from '../types/cart.type';
+import { TCartItem } from '../types';
 
 type InitCartState = { cart: TCartItem[] };
 

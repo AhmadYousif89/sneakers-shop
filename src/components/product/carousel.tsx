@@ -1,38 +1,34 @@
 import { useEffect, useRef } from 'react';
 
-import p1_1000 from '../../assets/images/p1-1000.jpg';
-import p2_1000 from '../../assets/images/p2-1000.jpg';
-import p3_1000 from '../../assets/images/p3-1000.jpg';
-import p4_1000 from '../../assets/images/p4-1000.jpg';
-
-import p1_176 from '../../assets/images/p1-176.jpg';
-import p2_176 from '../../assets/images/p2-176.jpg';
-import p3_176 from '../../assets/images/p3-176.jpg';
-import p4_176 from '../../assets/images/p4-176.jpg';
-
 import { Button } from '../ui/button';
+import { NavigateBackIcon } from '../icons';
 import { useUI } from '../../context/ui.context';
-import { NavigateBackIcon } from '../icons/navigate-back';
+import { product } from '../../data/featured-product';
 import { useProducts } from '../../context/products.context';
 
-const sneakerImgs = [p1_1000, p2_1000, p3_1000, p4_1000];
-const sneakerImgThumbs = [p1_176, p2_176, p3_176, p4_176];
-
 export const ProductCarousel = ({ inLightbox = false }) => {
+  const { setLightboxState } = useUI();
   const prevBtnRef = useRef<HTMLButtonElement>(null);
   const nextBtnRef = useRef<HTMLButtonElement>(null);
-  const { setLightboxState } = useUI();
   const {
     state: { curImageIdx },
-    setProductCurImage,
+    curImageHandler,
   } = useProducts();
 
+  const { full: prodFullImgs, thumb: prodThumbImgs } = product.image;
+
   const displayPrevImage = () => {
-    setProductCurImage(pv => (pv === 0 ? sneakerImgs.length - 1 : --pv));
+    const length = prodFullImgs.length;
+    curImageHandler(pv => {
+      return pv === 0 ? length - 1 : --pv;
+    });
   };
 
   const displayNextImage = () => {
-    setProductCurImage(pv => (pv === sneakerImgs.length - 1 ? 0 : ++pv));
+    const length = prodFullImgs.length;
+    curImageHandler(pv => {
+      return pv === length - 1 ? 0 : ++pv;
+    });
   };
 
   useEffect(() => {
@@ -75,7 +71,7 @@ export const ProductCarousel = ({ inLightbox = false }) => {
         </Button>
 
         <figure className="relative flex items-center bg-Yellowish_orange min-w-[32rem] min-h-[32rem] xl:rounded-3xl overflow-hidden">
-          {sneakerImgs.map((image, idx) => (
+          {(prodFullImgs as string[]).map((image, idx) => (
             <img
               key={idx}
               src={image}
@@ -117,11 +113,11 @@ export const ProductCarousel = ({ inLightbox = false }) => {
       </div>
 
       <div className="hidden xl:flex items-center justify-between mt-16">
-        {sneakerImgThumbs.map((imgThumb, idx) => (
+        {(prodThumbImgs as string[]).map((imgThumb, idx) => (
           <figure
             key={imgThumb}
             aria-pressed={idx === curImageIdx}
-            onClick={() => setProductCurImage(idx)}
+            onClick={() => curImageHandler(idx)}
             className={`relative overflow-hidden cursor-pointer rounded-2xl border-Orange aria-pressed:border-[3px] after:absolute after:inset-0 aria-pressed:after:bg-Pale_orange after:opacity-50 shadow-md shadow-Grayish_blue ${
               inLightbox ? 'shadow-none' : ''
             }`}>
