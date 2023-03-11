@@ -36,6 +36,13 @@ export const ProductDetails = () => {
     addCartItem(cartItem);
   };
 
+  useEffect(() => {
+    if (!itemInCart) {
+      setItemQty(0);
+      setShowMsg(false);
+    }
+  }, [itemInCart]);
+
   return (
     <section className="m-8 mb-40 justify-self-start xl:max-w-3xl xl:m-0">
       <div className="grid gap-4 mb-16">
