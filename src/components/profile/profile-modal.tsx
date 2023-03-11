@@ -56,7 +56,7 @@ export const ProfileModal = () => {
         </Button>
       </div>
 
-      <div className="grid text-2xl text-Grayish_blue capitalize px-2 text-center font-bold min-h-[20rem] max-h-[45rem] overflow-y-auto scrollbar-hide">
+      <div className="grid text-2xl text-Grayish_blue capitalize text-center font-bold px-2 min-h-[20rem] max-h-[45rem] overflow-y-auto scrollbar-hide">
         {profileOption === 'favorites' && <FavoriteList />}
         {profileOption === 'history' && <HistoryList />}
         {profileOption === 'orders' && <OrderList />}

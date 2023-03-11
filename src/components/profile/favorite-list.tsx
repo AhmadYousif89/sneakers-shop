@@ -19,6 +19,12 @@ export const FavoriteList = () => {
     item.title.toLowerCase().includes(query.toLowerCase()),
   );
 
+  const noQueryMsg = (
+    <p className="mt-20 font-normal text-Dark_grayish_blue">
+      we can't find what you're looking for !
+    </p>
+  );
+
   return (
     <div className="flex flex-col items-center">
       <label htmlFor="search-favorites" className="mt-8">
@@ -30,7 +36,7 @@ export const FavoriteList = () => {
           className="ml-4 px-6 py-2 focus-visible:outline-Orange focus-visible:outline-1 focus-visible:outline rounded-md font-normal text-Very_dark_blue ring-1 ring-Grayish_blue placeholder:text-center placeholder:text-xl"
         />
       </label>
-
+      {filteredFavList.length === 0 && noQueryMsg}
       <ul className="mx-4 my-8 grid grid-cols-3 auto-rows-min gap-4">
         {filteredFavList.map(item => (
           <li
