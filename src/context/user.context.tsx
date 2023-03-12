@@ -5,12 +5,12 @@ import {
   useContext,
   useReducer,
 } from 'react';
-import { TFavoriteItem, TOrderItem, THistoryItem } from '../types';
+import { TFavoriteItem, TOrderItem, THistoryItem, TOrder } from '../types';
 
 type UserInitState = {
   favoriteList: TFavoriteItem[];
   historyList: THistoryItem[];
-  orderList: TOrderItem[];
+  orderList: TOrder[];
 };
 
 const storedFavList = JSON.parse(
@@ -21,7 +21,7 @@ const storedHistoryList = JSON.parse(
 ) as THistoryItem[];
 const storedOrderList = JSON.parse(
   localStorage.getItem('order_list') as string,
-) as TOrderItem[];
+) as TOrder[];
 
 const initState: UserInitState = {
   orderList: storedOrderList ?? [],
@@ -45,7 +45,7 @@ export const UserCtxProvider = ({ children }: PropsWithChildren) => {
 };
 
 type ReducerActions =
-  | { type: 'add_to_orders'; payload: TOrderItem[] }
+  | { type: 'add_to_orders'; payload: TOrderItem }
   | { type: 'toggle_history'; payload: THistoryItem }
   | { type: 'toggle_favorite'; payload: TFavoriteItem }
   | { type: 'clear_favoriteList'; payload: [] }
@@ -72,7 +72,16 @@ const reducer = (state: UserInitState, { type, payload }: ReducerActions) => {
 
     /* Actions on the orders list */
     case 'add_to_orders': {
-      return { ...state };
+      const newOrder: TOrder = {
+        id: Math.random().toString(36).substring(6),
+        order: payload,
+        date: new Date().toLocaleString().replace(',', ' at '),
+      };
+
+      const newOrderList = [...state.orderList, newOrder];
+      localStorage.setItem('order_list', JSON.stringify(newOrderList));
+
+      return { ...state, orderList: newOrderList };
     }
     case 'clear_orderList': {
       return { ...state, orderList: [] };
@@ -116,7 +125,7 @@ const useProfileContext = (initState: UserInitState) => {
   );
 
   const addOrder = useCallback(
-    (payload: TOrderItem[]) => dispatch({ type: 'add_to_orders', payload }),
+    (payload: TOrderItem) => dispatch({ type: 'add_to_orders', payload }),
     [],
   );
   return { state, toggleItemFavorite, toggleItemHistory, addOrder };

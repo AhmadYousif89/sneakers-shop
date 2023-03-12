@@ -1,6 +1,4 @@
 import { TCartItem } from './TCartItem';
 
-export type TOrderItem = Pick<
-  TCartItem,
-  'id' | 'title' | 'image' | 'price' | 'qty' | 'size'
-> & { date: string };
+export type TOrderItem = Omit<TCartItem, 'availableQty'>[];
+export type TOrder = { id: string; order: TOrderItem; date: string };

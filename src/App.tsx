@@ -2,11 +2,12 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Checkout } from './pages/checkout.page';
 import { Product } from './pages/product.page';
-import { Success } from './pages/success';
+import { Success } from './pages/success.page';
+import { NotFound } from './pages/404.page';
 import { Home } from './pages/home.page';
 
 import { Shop } from './components/shop';
-import { NotFound } from './pages/404';
+import { Orders } from './pages/orders.page';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         ))}
         <Route path="product" element={<Product />} />
         <Route path="checkout" element={<Checkout />} />
+        <Route path="orders/:id" element={<Orders />} />
         <Route path="checkout/success" element={<Success />} />
         <Route path="*" element={<NotFound />} />
       </Route>

@@ -51,4 +51,31 @@
   .side {
     @apply font-bold;
   }
+
+  .wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .wave svg {
+    position: relative;
+    display: block;
+    width: calc(147% + 1.3px);
+    height: 160px;
+  }
+
+  .wave .shape-fill {
+    fill: #ffffff;
+  }
+
+  @media (max-width: 767px) {
+    .wave svg {
+      width: calc(265% + 1.3px);
+      height: 160px;
+    }
+  }
 }

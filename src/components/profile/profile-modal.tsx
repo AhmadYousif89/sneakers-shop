@@ -30,7 +30,7 @@ export const ProfileModal = () => {
           onClick={() => setProfileOption('favorites')}
           variant={'profile'}>
           <span>favorites</span>
-          <span className="ml-4 px-2 py-1 rounded-md ring-2 ring-Grayish_blue text-xl">
+          <span className="ml-4 px-2 py-1 min-w-[2rem] rounded-md ring-1 ring-Grayish_blue text-xl">
             {state.favoriteList.length > 99 ? '99+' : state.favoriteList.length}
           </span>
         </Button>
@@ -40,7 +40,7 @@ export const ProfileModal = () => {
           onClick={() => setProfileOption('orders')}
           variant={'profile'}>
           <span>orders</span>
-          <span className="ml-4 px-2 py-1 rounded-md ring-2 ring-Grayish_blue text-xl text-center">
+          <span className="ml-4 px-2 py-1 min-w-[2rem] rounded-md ring-1 ring-Grayish_blue text-xl text-center">
             {state.orderList.length > 99 ? '99+' : state.orderList.length}
           </span>
         </Button>
@@ -50,13 +50,13 @@ export const ProfileModal = () => {
           onClick={() => setProfileOption('history')}
           variant={'profile'}>
           <span>history</span>
-          <span className="ml-4 px-2 py-1 rounded-md ring-2 ring-Grayish_blue text-xl">
+          <span className="ml-4 py-1 min-w-[2rem] rounded-md ring-1 ring-Grayish_blue text-xl">
             {state.historyList.length > 99 ? '99+' : state.historyList.length}
           </span>
         </Button>
       </div>
 
-      <div className="grid text-2xl text-Grayish_blue capitalize text-center font-bold px-2 min-h-[20rem] max-h-[45rem] overflow-y-auto scrollbar-hide">
+      <div className="grid text-2xl text-Grayish_blue px-2 py-8 min-h-[20rem] max-h-[45rem] overflow-y-auto scrollbar-hide">
         {profileOption === 'favorites' && <FavoriteList />}
         {profileOption === 'history' && <HistoryList />}
         {profileOption === 'orders' && <OrderList />}
