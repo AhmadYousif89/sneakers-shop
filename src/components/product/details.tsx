@@ -26,7 +26,7 @@ export const ProductDetails = () => {
       id: product.id,
       qty: itemQty,
       title: product.title,
-      price: product.discountedPrice,
+      price: +product.discountedPrice.toFixed(2),
       image: { full: '', thumb: product.image.thumb[0] },
       size: product.size,
       color: product.color,

@@ -49,7 +49,7 @@ export const CheckoutTotal = () => {
   const hasDeliveryFees = subtotal > freeShippingPoint ? false : true;
   const totalCart = hasDeliveryFees
     ? subtotal - totalDiscount + deliveryFees
-    : (subtotal - totalDiscount).toFixed(2);
+    : subtotal - totalDiscount;
 
   return (
     <div className="flex flex-col gap-8 my-16 capitalize text-xl text-Dark_grayish_blue xl:text-2xl xl:gap-16">
@@ -82,7 +82,7 @@ export const CheckoutTotal = () => {
 
       <div className="text-2xl flex items-center justify-between font-bold xl:text-3xl">
         <span className="uppercase">total</span>
-        <span className="text-Very_dark_blue">$ {totalCart}</span>
+        <span className="text-Very_dark_blue">$ {totalCart.toFixed(2)}</span>
       </div>
 
       <Button

@@ -39,7 +39,7 @@ export const Orders = () => {
   const hasDeliveryFees = subtotal > freeShippingPoint ? false : true;
   const totalDue = hasDeliveryFees
     ? subtotal - totalDiscount + deliveryFees
-    : (subtotal - totalDiscount).toFixed(2);
+    : subtotal - totalDiscount;
 
   return (
     <section className="grid xl:grid-cols-3 mx-8 my-16 gap-8 xl:my-32">
@@ -82,7 +82,7 @@ export const Orders = () => {
 
                   <p className="flex items-center gap-8 mb-4 xl:justify-between xl:row-start-1 xl:col-start-2">
                     <span className="space-x-4">
-                      <b className="text-2xl xl:text-3xl">${item.price}</b>
+                      <b className="text-2xl xl:text-3xl">${item.price.toFixed(2)}</b>
                       <span className="text-xl line-through font-bold text-Dark_grayish_blue/50 xl:text-2xl">
                         ${originalPrice.toFixed(2)}
                       </span>
@@ -134,7 +134,7 @@ export const Orders = () => {
 
         <p className="flex items-center justify-between text-2xl font-bold tracking-wide xl:text-3xl">
           <span>Total Due</span>
-          <span>${totalDue}</span>
+          <span>${totalDue.toFixed(2)}</span>
         </p>
       </section>
 
