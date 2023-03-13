@@ -18,7 +18,7 @@ module.exports = {
         Light_grayish_blue: 'hsl(223, 64%, 98%)',
       },
       screens: {
-        xs: '400px',
+        xs: '430px',
       },
       fontFamily: {
         kumbh: ['Kumbh Sans', ' sans-serif'],

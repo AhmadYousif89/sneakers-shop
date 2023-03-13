@@ -6,7 +6,7 @@ import { ProfileModal } from './profile/profile-modal';
 
 export const Shop = () => {
   return (
-    <main className="flex flex-col min-h-[100svh] mx-auto max-w-[40rem] xl:max-w-[144rem] xs:max-xl:hidden">
+    <main className="flex flex-col min-h-[100svh] mx-auto max-w-[43rem] xl:max-w-[144rem] xs:max-xl:hidden">
       <h1 className="sr-only">Sneakers Shop</h1>
       <Header>
         <CartModal />

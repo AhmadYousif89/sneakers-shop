@@ -17,7 +17,7 @@ export const Lightbox = () => {
   }, []);
 
   return (
-    <Overlay>
+    <Overlay onClick={() => setLightboxState(false)}>
       <div className="flex flex-col gap-4" onClick={e => e.stopPropagation()}>
         <Button
           title="close lightbox"

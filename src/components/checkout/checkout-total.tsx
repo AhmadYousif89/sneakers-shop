@@ -17,14 +17,14 @@ export const CheckoutTotal = () => {
     clearCart,
   } = useCart();
   const { addOrder } = useProfile();
-  const { ref: tipRef, isInside } = useEventListener<HTMLSpanElement>({});
+  const { ref: tipRef, isInside } = useEventListener<HTMLSpanElement>({ id: 'tooltip' });
 
   const handleCheckout = () => {
     setIsChecking(true);
     clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
+      addOrder(cart);
       setIsChecking(false);
-      addOrder(cart); // creating new order
       navigate('success');
       clearCart();
     }, 2000);
@@ -89,7 +89,7 @@ export const CheckoutTotal = () => {
         hasRipple
         variant={'cart_chk'}
         onClick={handleCheckout}
-        className="w-full py-6">
+        className="w-full py-6 mt-8">
         <span>Place your order</span>
         {isChecking && (
           <SpinnerIcon className="absolute top-1/2 -translate-y-1/2 right-0 -translate-x-10" />

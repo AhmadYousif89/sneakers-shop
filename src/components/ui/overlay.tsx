@@ -1,13 +1,12 @@
 import { PropsWithChildren } from 'react';
-import { useUI } from '../../context/ui.context';
 
-export const Overlay = ({ children }: PropsWithChildren) => {
-  const { setLightboxState } = useUI();
+type OverlaryProps = { onClick?: () => void; className?: string } & PropsWithChildren;
 
+export const Overlay = ({ children, onClick, className = '' }: OverlaryProps) => {
   return (
     <div
-      onClick={() => setLightboxState(false)}
-      className="fixed inset-0 min-h-screen z-20 bg-black/75 flex flex-col items-center justify-center">
+      onClick={onClick}
+      className={`fixed inset-0 min-h-screen z-20 bg-black/75 flex flex-col items-center justify-center ${className}`}>
       {children}
     </div>
   );

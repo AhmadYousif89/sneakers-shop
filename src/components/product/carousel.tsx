@@ -33,7 +33,7 @@ export const ProductCarousel = ({ inLightbox = false }) => {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') {
+      if (e.key === 'ArrowLeft' && !e.altKey) {
         if (nextBtnRef.current && prevBtnRef.current) {
           prevBtnRef.current.blur();
           nextBtnRef.current.focus();
@@ -41,7 +41,7 @@ export const ProductCarousel = ({ inLightbox = false }) => {
         if (inLightbox) return;
         displayPrevImage();
       }
-      if (e.key === 'ArrowRight') {
+      if (e.key === 'ArrowRight' && !e.altKey) {
         if (nextBtnRef.current && prevBtnRef.current) {
           nextBtnRef.current.blur();
           prevBtnRef.current.focus();
@@ -70,7 +70,7 @@ export const ProductCarousel = ({ inLightbox = false }) => {
           <NavigateBackIcon className="hover:fill-Orange" />
         </Button>
 
-        <figure className="relative flex items-center bg-Yellowish_orange min-w-[32rem] min-h-[32rem] xl:rounded-3xl overflow-hidden">
+        <figure className="relative flex items-center bg-Yellowish_orange min-w-[40rem] min-h-[40rem] xl:rounded-3xl overflow-hidden">
           {(prodFullImgs as string[]).map((image, idx) => (
             <img
               key={idx}

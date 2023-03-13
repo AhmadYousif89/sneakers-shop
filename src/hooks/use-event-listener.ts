@@ -2,15 +2,15 @@ import { useEffect, useRef, useState } from 'react';
 
 type EventType = 'click' | 'touch' | 'mouseover';
 
-type Callback = (event: Event) => void;
-
 type Options = {
+  id: string;
   eventType?: EventType;
-  insideElement?: Callback;
-  outsideElement?: Callback;
+  insideElement?: () => void;
+  outsideElement?: () => void;
 };
 
 export const useEventListener = <E extends HTMLElement>({
+  id,
   eventType = 'click',
   insideElement,
   outsideElement,
@@ -19,20 +19,27 @@ export const useEventListener = <E extends HTMLElement>({
   const [isInside, setIsInside] = useState(false);
 
   useEffect(() => {
+    if (!id) return;
+    const el = ref.current;
+    if (el) el.id = id;
+  }, [id]);
+
+  useEffect(() => {
     const eventHandler = (e: Event) => {
       const el = ref.current;
-      if (el && el.contains(e.target as Node)) {
-        setIsInside(pv => !pv);
-        if (insideElement) insideElement(e);
-      } else {
+      const target = e.target as HTMLElement;
+      if (el && el.contains(target) && target.id === id) {
+        setIsInside(true);
+        if (insideElement) insideElement();
+      } else if (target.id !== id) {
         setIsInside(false);
-        if (outsideElement) outsideElement(e);
+        if (outsideElement) outsideElement();
       }
     };
 
     document.addEventListener(eventType, eventHandler);
     return () => document.removeEventListener(eventType, eventHandler);
-  }, [eventType, insideElement, outsideElement]);
+  }, [eventType, insideElement, outsideElement, id]);
 
   return { ref, isInside };
 };

@@ -39,7 +39,7 @@ export const FavoriteList = () => {
 
       {filteredFavList.length === 0 && noQueryMsg}
 
-      <ul className="mx-4 my-8 grid grid-cols-3 auto-rows-min gap-4">
+      <ul className="m-8 grid grid-cols-3 auto-rows-min gap-6">
         {filteredFavList.map(item => (
           <li
             key={item.id}

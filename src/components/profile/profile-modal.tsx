@@ -16,14 +16,14 @@ export const ProfileModal = () => {
   } = useUI();
   const { state } = useProfile();
 
-  const animateCart = profileIsOpen
+  const animate = profileIsOpen
     ? 'translate-y-16 xl:translate-y-20 opacity-100 visible'
     : 'translate-y-0 opacity-0 invisible';
 
   return (
     <Card
       onClick={e => e.stopPropagation()}
-      className={`absolute z-10 top-24 left-1/2 xl:left-full xl:-translate-x-[102%] max-w-4xl -translate-x-1/2 w-11/12 ${animateCart} transition-all duration-[var(--duration)] ease-in-out min-h-[20rem]`}>
+      className={`absolute z-10 top-24 left-1/2 xl:left-full xl:-translate-x-[102%] max-w-4xl -translate-x-1/2 w-11/12 ${animate} transition-all duration-[var(--duration)] ease-in-out min-h-[20rem]`}>
       <div className="flex items-center justify-between p-8 gap-2 capitalize border-b border-Grayish_blue/25 tracking-wide">
         <Button
           aria-pressed={profileOption === 'favorites'}
@@ -56,7 +56,7 @@ export const ProfileModal = () => {
         </Button>
       </div>
 
-      <div className="grid text-2xl text-Grayish_blue px-2 py-8 min-h-[20rem] max-h-[45rem] overflow-y-auto scrollbar-hide">
+      <div className="grid text-2xl text-Grayish_blue py-8 min-h-[20rem] max-h-[45rem] overflow-y-auto scrollbar-hide">
         {profileOption === 'favorites' && <FavoriteList />}
         {profileOption === 'history' && <HistoryList />}
         {profileOption === 'orders' && <OrderList />}

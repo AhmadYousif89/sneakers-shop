@@ -24,19 +24,24 @@ export const Header = ({ children }: PropsWithChildren) => {
   } = useCart();
 
   const { ref: cartRef } = useEventListener<HTMLButtonElement>({
+    id: 'cart_btn',
     insideElement: () => {
       setCartState(pv => !pv);
       setProfileState(false);
     },
-    outsideElement: () => setCartState(false),
-  });
-
-  const { ref: profileRef } = useEventListener<HTMLButtonElement>({
-    insideElement: () => {
-      setProfileState(pv => !pv);
+    outsideElement: () => {
       setCartState(false);
     },
-    outsideElement: () => setProfileState(false),
+  });
+
+  const { ref: profileRef, isInside } = useEventListener<HTMLButtonElement>({
+    id: 'profile_btn',
+    insideElement: () => {
+      setProfileState(pv => !pv);
+    },
+    outsideElement: () => {
+      setProfileState(false);
+    },
   });
 
   let totalQty;
@@ -67,12 +72,12 @@ export const Header = ({ children }: PropsWithChildren) => {
       <div className="flex items-center gap-8 xl:gap-16">
         <Button ref={cartRef} className="relative w-10 h-10 flex-center">
           {cart.length > 0 && (
-            <span className="absolute -top-3 left-3 bg-Orange px-2 min-w-[2.25rem] text-White text-lg rounded-xl flex-center font-bold">
+            <span className="absolute -top-3 left-3 bg-Orange px-2 min-w-[2.25rem] text-White text-lg rounded-xl flex-center font-bold pointer-events-none">
               {totalQty}
             </span>
           )}
           <span className="sr-only">_number of items quantity in cart</span>
-          <CartIcon />
+          <CartIcon className="pointer-events-none fill-Dark_grayish_blue" />
         </Button>
 
         <Button
@@ -80,7 +85,7 @@ export const Header = ({ children }: PropsWithChildren) => {
           className="hover:ring-2 hover:ring-Orange rounded-full focus-visible:outline-2 focus-visible:outline-Orange">
           <span className="sr-only">profile image</span>
           <img
-            className="h-12 xl:h-16"
+            className="h-12 xl:h-16 pointer-events-none"
             alt="user profile icon"
             src={profileImg}
             aria-hidden
