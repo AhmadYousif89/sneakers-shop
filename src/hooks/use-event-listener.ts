@@ -29,7 +29,7 @@ export const useEventListener = <E extends HTMLElement>({
       const el = ref.current;
       const target = e.target as HTMLElement;
       if (el && el.contains(target) && target.id === id) {
-        setIsInside(true);
+        setIsInside(pv => !pv);
         if (insideElement) insideElement();
       } else if (target.id !== id) {
         setIsInside(false);

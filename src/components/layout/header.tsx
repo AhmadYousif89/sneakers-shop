@@ -34,7 +34,7 @@ export const Header = ({ children }: PropsWithChildren) => {
     },
   });
 
-  const { ref: profileRef, isInside } = useEventListener<HTMLButtonElement>({
+  const { ref: profileRef } = useEventListener<HTMLButtonElement>({
     id: 'profile_btn',
     insideElement: () => {
       setProfileState(pv => !pv);
