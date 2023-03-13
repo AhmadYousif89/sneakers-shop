@@ -9,7 +9,7 @@ export const OrderList = () => {
 
   if (orderList.length === 0)
     return (
-      <h2 className="place-self-center">
+      <h2 className="place-self-center text-center">
         Looks like you haven't purchased any sneaker lately !
       </h2>
     );

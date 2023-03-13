@@ -12,7 +12,7 @@ export const HistoryList = () => {
 
   if (historyList.length === 0)
     return (
-      <h2 className="place-self-center">
+      <h2 className="place-self-center text-center">
         You have no history, you can start with our awesome collections
       </h2>
     );
