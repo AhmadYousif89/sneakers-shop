@@ -24,19 +24,15 @@ export const Header = ({ children }: PropsWithChildren) => {
   } = useCart();
 
   const { ref: cartRef } = useEventListener<HTMLButtonElement>({
-    id: 'cart_btn',
     insideElement: () => {
       setCartState(pv => !pv);
-      setProfileState(false);
     },
     outsideElement: e => {
-      if ((e.target as HTMLButtonElement).id === 'profile_btn') setProfileState(true);
       setCartState(false);
     },
   });
 
   const { ref: profileRef } = useEventListener<HTMLButtonElement>({
-    id: 'profile_btn',
     insideElement: () => {
       setProfileState(pv => !pv);
     },

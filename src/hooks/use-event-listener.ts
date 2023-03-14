@@ -1,36 +1,28 @@
 import { useEffect, useRef, useState } from 'react';
 
-type EventType = 'click' | 'mouseover';
-
-type Options<E> = {
-  id?: string;
+type EventType = 'click' | 'pointerdown';
+type Options = {
   eventType?: EventType;
   insideElement?: (e: Event) => void;
   outsideElement?: (e: Event) => void;
 };
 
 export const useEventListener = <E extends HTMLElement>({
-  id = '',
-  eventType = 'click',
+  eventType = 'pointerdown',
   insideElement,
   outsideElement,
-}: Options<E>) => {
+}: Options) => {
   const ref = useRef<E>(null);
   const [isInside, setIsInside] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (el) el.id = id;
-  }, [id]);
-
-  useEffect(() => {
     const eventHandler = (e: Event) => {
-      const el = ref.current;
       const target = e.target as E;
-      if (el && el.contains(target) && target.id === id) {
+      const el = ref.current;
+      if (el && el.contains(target)) {
         setIsInside(pv => !pv);
         if (insideElement) insideElement(e);
-      } else if (target.id !== id) {
+      } else {
         setIsInside(false);
         if (outsideElement) outsideElement(e);
       }
@@ -38,7 +30,7 @@ export const useEventListener = <E extends HTMLElement>({
 
     document.addEventListener(eventType, eventHandler);
     return () => document.removeEventListener(eventType, eventHandler);
-  }, [eventType, insideElement, outsideElement, id]);
+  }, [eventType]);
 
   return { ref, isInside };
 };
