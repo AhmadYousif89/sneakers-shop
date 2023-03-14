@@ -43,7 +43,9 @@ export const FavoriteList = () => {
         {filteredFavList.map(item => (
           <li
             key={item.id}
-            onClick={() => navigate('product')}
+            onClick={() => {
+              navigate('product');
+            }}
             className="relative flex flex-col items-center justify-center gap-2 bg-Light_grayish_blue px-4 py-4 rounded-md cursor-pointer shadow-sm hover:ring-1 hover:ring-Grayish_blue transition-shadow duration-[var(--duration)]">
             <Button
               title="delete item from favorite"

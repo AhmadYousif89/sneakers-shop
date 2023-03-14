@@ -20,7 +20,7 @@ export const HistoryList = () => {
   return (
     <section className="flex flex-col">
       <h2 className="mb-8 text-2xl self-center">Most Recent</h2>
-      <ul className="grid grid-cols-1 mx-8 gap-4 justify-items-center">
+      <ul className="grid grid-cols-1 justify-items-center mx-8 gap-4">
         {historyList.map(item => (
           <li
             key={item.id}
@@ -36,10 +36,11 @@ export const HistoryList = () => {
               variant={'profile_del'}>
               <CloseIcon />
             </Button>
+
             <img
               src={item.image.thumb as string}
               alt={item.title}
-              className="rounded-xl w-16 xl:w-20"
+              className="rounded-xl w-16 xl:w-20 object-contain bg-Grayish_blue aspect-square"
             />
             <p className="text-Dark_grayish_blue text-xl">{item.title}</p>
           </li>

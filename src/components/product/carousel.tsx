@@ -75,7 +75,7 @@ export const ProductCarousel = ({ inLightbox = false }) => {
           <NavigateBackIcon className="hover:fill-Orange" />
         </Button>
 
-        <figure className="relative flex items-center bg-Yellowish_orange min-w-[40rem] min-h-[45rem] xl:rounded-3xl overflow-hidden">
+        <figure className="relative flex items-center bg-Yellowish_orange min-w-[40rem] min-h-[40rem] xl:rounded-3xl overflow-hidden">
           {(prodFullImgs as string[]).map((image, idx) => (
             <img
               key={idx}
