@@ -24,21 +24,13 @@ export const Header = ({ children }: PropsWithChildren) => {
   } = useCart();
 
   const { ref: cartRef } = useEventListener<HTMLButtonElement>({
-    insideElement: () => {
-      setCartState(pv => !pv);
-    },
-    outsideElement: e => {
-      setCartState(false);
-    },
+    insideElement: () => setCartState(pv => !pv),
+    outsideElement: () => setCartState(false),
   });
 
   const { ref: profileRef } = useEventListener<HTMLButtonElement>({
-    insideElement: () => {
-      setProfileState(pv => !pv);
-    },
-    outsideElement: () => {
-      setProfileState(false);
-    },
+    insideElement: () => setProfileState(pv => !pv),
+    outsideElement: () => setProfileState(false),
   });
 
   let totalQty;

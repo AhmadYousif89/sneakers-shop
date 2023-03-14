@@ -1,12 +1,15 @@
+import { Button } from '../ui/button';
+import { THistoryItem } from '../../types';
 import { product } from '../../data/featured-product';
 import { useProfile } from '../../context/user.context';
-import { THistoryItem } from '../../types';
-import { Button } from '../ui/button';
+import { SkeletonImage } from '../skeletons/skeleton-image';
+import { useImageLoader } from '../../hooks/use-image-loader';
+
+const productImg = product.image.thumb[0];
 
 export const FeaturedProduct = () => {
   const { toggleItemHistory } = useProfile();
-
-  const productImg = product.image.thumb[0];
+  const { isLoading } = useImageLoader(productImg);
 
   const addToHistoryHandler = () => {
     const item: THistoryItem = {
@@ -42,8 +45,11 @@ export const FeaturedProduct = () => {
           </div>
 
           <figure className="col-start-2">
-            <img src={productImg} alt="display sneaker" className="rounded-full" />
-            <figcaption className="sr-only">featured sneaker image</figcaption>
+            {isLoading ? (
+              <SkeletonImage />
+            ) : (
+              <img src={productImg} alt={product.title} className="rounded-full" />
+            )}
           </figure>
         </div>
 
@@ -67,7 +73,11 @@ export const FeaturedProduct = () => {
           </div>
 
           <figure className="col-start-2">
-            <img src={productImg} alt="display sneaker" className="rounded-full" />
+            {isLoading ? (
+              <SkeletonImage />
+            ) : (
+              <img src={productImg} alt={product.title} className="rounded-full" />
+            )}
             <figcaption className="sr-only">featured sneaker image</figcaption>
           </figure>
         </div>
@@ -92,7 +102,11 @@ export const FeaturedProduct = () => {
           </div>
 
           <figure className="col-start-2">
-            <img src={productImg} alt="display sneaker" className="rounded-full" />
+            {isLoading ? (
+              <SkeletonImage />
+            ) : (
+              <img src={productImg} alt={product.title} className="rounded-full" />
+            )}
             <figcaption className="sr-only">featured sneaker image</figcaption>
           </figure>
         </div>

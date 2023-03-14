@@ -5,6 +5,8 @@ import { NavigateBackIcon } from '../icons';
 import { useUI } from '../../context/ui.context';
 import { product } from '../../data/featured-product';
 import { useProducts } from '../../context/products.context';
+import { useImageLoader } from '../../hooks/use-image-loader';
+import { SkeletonCarousel } from '../skeletons/skeleton-carousel';
 
 export const ProductCarousel = ({ inLightbox = false }) => {
   const { setLightboxState } = useUI();
@@ -16,6 +18,7 @@ export const ProductCarousel = ({ inLightbox = false }) => {
   } = useProducts();
 
   const { full: prodFullImgs, thumb: prodThumbImgs } = product.image;
+  const { isLoading, imageRef } = useImageLoader(prodFullImgs);
 
   const displayPrevImage = () => {
     const length = prodFullImgs.length;
@@ -55,6 +58,8 @@ export const ProductCarousel = ({ inLightbox = false }) => {
     return () => document.removeEventListener('keydown', handler);
   }, [inLightbox]);
 
+  if (isLoading) return <SkeletonCarousel />;
+
   return (
     <div className="xl:max-w-3xl">
       <div className="relative group">
@@ -70,11 +75,12 @@ export const ProductCarousel = ({ inLightbox = false }) => {
           <NavigateBackIcon className="hover:fill-Orange" />
         </Button>
 
-        <figure className="relative flex items-center bg-Yellowish_orange min-w-[40rem] min-h-[40rem] xl:rounded-3xl overflow-hidden">
+        <figure className="relative flex items-center bg-Yellowish_orange min-w-[40rem] min-h-[45rem] xl:rounded-3xl overflow-hidden">
           {(prodFullImgs as string[]).map((image, idx) => (
             <img
               key={idx}
               src={image}
+              ref={imageRef}
               alt="sneakers image"
               className="transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${curImageIdx * 100}%)` }}

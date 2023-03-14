@@ -13,7 +13,6 @@ export const ProfileModal = () => {
   const [profileOption, setProfileOption] = useState<typeof options[number]>('favorites');
   const {
     state: { profileIsOpen },
-    setProfileState,
   } = useUI();
   const { state } = useProfile();
 
