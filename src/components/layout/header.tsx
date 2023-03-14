@@ -29,7 +29,8 @@ export const Header = ({ children }: PropsWithChildren) => {
       setCartState(pv => !pv);
       setProfileState(false);
     },
-    outsideElement: () => {
+    outsideElement: e => {
+      if ((e.target as HTMLButtonElement).id === 'profile_btn') setProfileState(true);
       setCartState(false);
     },
   });

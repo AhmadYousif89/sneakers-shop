@@ -17,7 +17,7 @@ export const CheckoutTotal = () => {
     clearCart,
   } = useCart();
   const { addOrder } = useProfile();
-  const { ref: tipRef, isInside } = useEventListener<HTMLSpanElement>({ id: 'tooltip' });
+  const { ref: tipRef, isInside } = useEventListener<HTMLSpanElement>({});
 
   const handleCheckout = () => {
     setIsChecking(true);
@@ -73,7 +73,7 @@ export const CheckoutTotal = () => {
               aria-pressed={isInside}
               data-tip={`Eligible free shipping on purchases over $${freeShippingPoint}`}
               className="absolute top-0 -right-8 cursor-pointer fill-Dark_grayish_blue font-bold after:scale-0 after:aria-pressed:scale-100 after:transition-transform after:duration-[var(--duration)] after:origin-bottom-left after:content-[attr(data-tip)] after:px-4 after:py-2 after:absolute after:-top-12 after:-left-0 after:rounded-full after:w-max after:normal-case after:text-Dark_grayish_blue after:bg-Light_grayish_blue">
-              <InfoIcon className="pointer-events-none" />
+              <InfoIcon />
             </span>
           </span>
           <span>{hasDeliveryFees ? `$${deliveryFees.toFixed(2)}` : 'free shipping'}</span>
