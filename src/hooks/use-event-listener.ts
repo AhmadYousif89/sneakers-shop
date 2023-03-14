@@ -8,7 +8,7 @@ type Options = {
 };
 
 export const useEventListener = <E extends HTMLElement>({
-  eventType = 'pointerdown',
+  eventType = 'click',
   insideElement,
   outsideElement,
 }: Options) => {

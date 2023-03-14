@@ -1,8 +1,8 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, MouseEvent, PropsWithChildren } from 'react';
 
 type CardProps = {
   className?: string;
-  onClick?: (e: any) => void;
+  onClick?: (e: MouseEvent) => void;
 };
 
 export const Card: FC<PropsWithChildren<CardProps>> = ({
