@@ -24,7 +24,7 @@ export const SideNavigation = () => {
       <nav
         className={`${
           menuIsOpen ? 'translate-x-0 delay-150' : '-translate-x-full delay-0'
-        } fixed z-30 top-0 left-0 w-full transition-transform duration-500 xs:hidden`}>
+        } fixed z-50 top-0 left-0 w-full transition-transform duration-500 xs:hidden`}>
         <Button
           aria-expanded={menuIsOpen}
           onClick={() => setMenuState(false)}
