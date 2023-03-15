@@ -1,15 +1,14 @@
+import { useUserStore } from '../../store';
+
 import { Button } from '../ui/button';
 import { FavorIcon } from '../icons/favorite';
 import { TProduct } from '../../types/product.type';
-import { useProfile } from '../../context/user.context';
 import { SkeletonItem } from '../skeletons/skeleton-item';
 import { useImageLoader } from '../../hooks/use-image-loader';
 
 export const CategoryItem = ({ item }: { item: TProduct }) => {
-  const {
-    state: { favoriteList },
-    toggleItemFavorite,
-  } = useProfile();
+  const favoriteList = useUserStore(state => state.favoriteList);
+  const toggleItemFavorite = useUserStore(state => state.toggleItemFavorite);
 
   const itemImage = item.image.thumb as string;
   const { isLoading, imageRef } = useImageLoader(itemImage);
@@ -22,7 +21,7 @@ export const CategoryItem = ({ item }: { item: TProduct }) => {
   if (isLoading) return <SkeletonItem />;
 
   return (
-    <li className="w-96 flex flex-col justify-between gap-4 bg-Light_grayish_blue p-8 rounded-3xl shadow-sm">
+    <li className="w-96 min-h-[33rem] flex flex-col justify-between gap-4 bg-Light_grayish_blue p-8 rounded-3xl shadow-sm">
       <figure className="relative w-full min-h-[17rem] flex-center isolate before:absolute before:w-56 before:h-56 before:bg-gradient-to-br before:from-Orange/40 before:to-Orange/80 before:rounded-full before:-z-10 before:shadow-lg">
         <img ref={imageRef} src={itemImage} alt={item.title} />
         <figcaption className="sr-only">product image in the category section</figcaption>

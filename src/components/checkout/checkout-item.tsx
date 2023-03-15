@@ -1,11 +1,14 @@
-import { useCart } from '../../context/cart.context';
-import { TCartItem } from '../../types/TCartItem';
-import { MinusIcon } from '../icons/minus';
-import { PlusIcon } from '../icons/plus';
+import { useCartStore } from '../../store';
+
 import { Button } from '../ui/button';
+import { MinusIcon, PlusIcon } from '../icons';
+import { TCartItem } from '../../types/TCartItem';
 
 export const CheckoutItem = ({ cartItem }: { cartItem: TCartItem }) => {
-  const { incrementCartItem, decrementCartItem } = useCart();
+  const [incrementCartItem, decrementCartItem] = useCartStore(state => [
+    state.incrementCartItem,
+    state.decrementCartItem,
+  ]);
 
   return (
     <li

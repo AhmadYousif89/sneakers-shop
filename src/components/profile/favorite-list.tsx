@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useProfile } from '../../context/user.context';
+import { useUserStore } from '../../store';
+
 import { CloseIcon } from '../icons';
 import { Button } from '../ui/button';
 
 export const FavoriteList = () => {
-  const {
-    state: { favoriteList },
-    toggleItemFavorite,
-  } = useProfile();
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
+  const favoriteList = useUserStore(state => state.favoriteList);
+  const toggleItemFavorite = useUserStore(state => state.toggleItemFavorite);
 
   if (favoriteList.length === 0)
     return <h2 className="place-self-center">You don't have any favorites !</h2>;
@@ -19,14 +18,10 @@ export const FavoriteList = () => {
     item.title.toLowerCase().includes(query.toLowerCase()),
   );
 
-  const noQueryMsg = (
-    <p className="mt-20 text-Dark_grayish_blue normal-case">
-      We can't find what you're looking for !
-    </p>
-  );
+  const noQueryMsg = <h2 className="place-self-center">We can't find what you're looking for !</h2>;
 
   return (
-    <div className="flex flex-col items-center capitalize text-center">
+    <div className="flex flex-col capitalize text-center">
       <label htmlFor="search-favorites">
         <input
           type="text"
@@ -39,7 +34,7 @@ export const FavoriteList = () => {
 
       {filteredFavList.length === 0 && noQueryMsg}
 
-      <ul className="m-8 grid grid-cols-3 auto-rows-min gap-6">
+      <ul className="my-12 grid grid-cols-2 gap-6 xl:grid-cols-3">
         {filteredFavList.map(item => (
           <li
             key={item.id}
@@ -57,14 +52,8 @@ export const FavoriteList = () => {
               variant={'profile_del'}>
               <CloseIcon />
             </Button>
-            <img
-              src={item.image.thumb as string}
-              alt={item.title}
-              className="rounded-xl w-20"
-            />
-            <p className="text-Dark_grayish_blue text-xl pointer-events-none">
-              {item.title}
-            </p>
+            <img src={item.image.thumb as string} alt={item.title} className="rounded-xl w-20" />
+            <p className="text-Dark_grayish_blue text-xl pointer-events-none">{item.title}</p>
           </li>
         ))}
       </ul>

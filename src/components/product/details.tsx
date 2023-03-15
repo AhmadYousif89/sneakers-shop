@@ -1,20 +1,19 @@
 import { useEffect, useState } from 'react';
+import { useCartStore } from '../../store';
 
-import { MinusIcon, PlusIcon, CartIcon } from '../icons';
-import { product } from '../../data/featured-product';
-import { useCart } from '../../context/cart.context';
 import { Button } from '../ui/button';
 import { TCartItem } from '../../types';
+import { product } from '../../data/featured-product';
+import { MinusIcon, PlusIcon, CartIcon } from '../icons';
 
 export const ProductDetails = () => {
-  const {
-    state: { cart },
-    addCartItem,
-  } = useCart();
+  const [showMsg, setShowMsg] = useState(false);
+  const cart = useCartStore(state => state.cart);
+  const addCartItem = useCartStore(state => state.addCartItem);
+
   const itemInCart = cart.find(i => i.id === product.id);
   const qty = itemInCart ? itemInCart.qty : 0;
   const [itemQty, setItemQty] = useState(qty);
-  const [showMsg, setShowMsg] = useState(false);
 
   const handleItemToCart = () => {
     if (itemQty === 0 || itemQty === itemInCart?.qty) {

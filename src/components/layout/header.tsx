@@ -1,36 +1,31 @@
 import { PropsWithChildren } from 'react';
-
-import { MenuIcon } from '../icons/menu';
-import { CartIcon } from '../icons/cart';
-import logo from '../../assets/icons/logo.svg';
-import { TopNavigation } from '../layout/top-nav';
-import profileImg from '../../assets/images/avatar.png';
-
-import { Button } from '../ui/button';
-import { SideNavigation } from './side-nav';
-import { useUI } from '../../context/ui.context';
-import { useCart } from '../../context/cart.context';
+import { useCartStore, useUIStore } from '../../store';
 import { useEventListener } from '../../hooks/use-event-listener';
 
+import { MenuIcon, CartIcon } from '../icons';
+import logo from '../../assets/icons/logo.svg';
+import profileImg from '../../assets/images/avatar.png';
+import { SideNavigation } from './side-nav';
+import { TopNavigation } from './top-nav';
+import { Button } from '../ui/button';
+
 export const Header = ({ children }: PropsWithChildren) => {
-  const {
-    state: { menuIsOpen },
-    setProfileState,
-    setCartState,
-    setMenuState,
-  } = useUI();
-  const {
-    state: { cart },
-  } = useCart();
+  const menuIsOpen = useUIStore(state => state.menuIsOpen);
+  const [setProfileStatus, setCartStatus, setMenuStatus] = useUIStore(state => [
+    state.setProfileStatus,
+    state.setCartStatus,
+    state.setMenuStatus,
+  ]);
+  const cart = useCartStore(state => state.cart);
 
   const { ref: cartRef } = useEventListener<HTMLButtonElement>({
-    insideElement: () => setCartState(pv => !pv),
-    outsideElement: () => setCartState(false),
+    insideElement: () => setCartStatus(pv => !pv),
+    outsideElement: () => setCartStatus(false),
   });
 
   const { ref: profileRef } = useEventListener<HTMLButtonElement>({
-    insideElement: () => setProfileState(pv => !pv),
-    outsideElement: () => setProfileState(false),
+    insideElement: () => setProfileStatus(pv => !pv),
+    outsideElement: () => setProfileStatus(false),
   });
 
   let totalQty;
@@ -43,7 +38,7 @@ export const Header = ({ children }: PropsWithChildren) => {
         <Button
           className="xs:hidden"
           aria-expanded={menuIsOpen}
-          onClick={() => setMenuState(true)}>
+          onClick={() => setMenuStatus(true)}>
           <span className="sr-only">side menu button</span>
           <MenuIcon aria-hidden />
         </Button>

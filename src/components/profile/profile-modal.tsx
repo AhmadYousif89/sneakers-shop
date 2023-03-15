@@ -1,20 +1,22 @@
 import { useState } from 'react';
+import { useUserStore, useUIStore } from '../../store';
+
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
-import { useUI } from '../../context/ui.context';
 import { FavoriteList } from './favorite-list';
 import { HistoryList } from './history-list';
 import { OrderList } from './order-list';
-import { useProfile } from '../../context/user.context';
 
 const options = ['favorites', 'orders', 'history'] as const;
 
 export const ProfileModal = () => {
   const [profileOption, setProfileOption] = useState<typeof options[number]>('favorites');
-  const {
-    state: { profileIsOpen },
-  } = useUI();
-  const { state } = useProfile();
+  const profileIsOpen = useUIStore(state => state.profileIsOpen);
+  const [favoriteList, historyList, orderList] = useUserStore(state => [
+    state.favoriteList,
+    state.historyList,
+    state.orderList,
+  ]);
 
   const animate = profileIsOpen
     ? 'translate-y-16 xl:translate-y-20 opacity-100 visible'
@@ -31,7 +33,7 @@ export const ProfileModal = () => {
           variant={'profile'}>
           <span>favorites</span>
           <span className="ml-4 px-2 py-1 min-w-[2rem] rounded-md ring-1 ring-Grayish_blue text-xl">
-            {state.favoriteList.length > 99 ? '99+' : state.favoriteList.length}
+            {favoriteList.length > 99 ? '99+' : favoriteList.length}
           </span>
         </Button>
 
@@ -41,7 +43,7 @@ export const ProfileModal = () => {
           variant={'profile'}>
           <span>orders</span>
           <span className="ml-4 px-2 py-1 min-w-[2rem] rounded-md ring-1 ring-Grayish_blue text-xl text-center">
-            {state.orderList.length > 99 ? '99+' : state.orderList.length}
+            {orderList.length > 99 ? '99+' : orderList.length}
           </span>
         </Button>
 
@@ -51,12 +53,12 @@ export const ProfileModal = () => {
           variant={'profile'}>
           <span>history</span>
           <span className="ml-4 py-1 min-w-[2rem] rounded-md ring-1 ring-Grayish_blue text-xl">
-            {state.historyList.length > 99 ? '99+' : state.historyList.length}
+            {historyList.length > 99 ? '99+' : historyList.length}
           </span>
         </Button>
       </div>
 
-      <div className="grid text-2xl text-Grayish_blue py-8 min-h-[20rem] max-h-[45rem] overflow-y-auto scrollbar-hide">
+      <div className="grid text-2xl text-Grayish_blue p-8 min-h-[20rem] max-h-[42rem] overflow-y-auto scrollbar-hide">
         {profileOption === 'favorites' && <FavoriteList />}
         {profileOption === 'history' && <HistoryList />}
         {profileOption === 'orders' && <OrderList />}

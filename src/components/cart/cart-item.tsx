@@ -1,21 +1,17 @@
-import { useCart } from '../../context/cart.context';
+import { useCartStore } from '../../store/cart.store';
 import { TCartItem } from '../../types/TCartItem';
 import { DeleteIcon } from '../icons/delete';
 import { Button } from '../ui/button';
 
 export const CartItem = ({ item }: { item: TCartItem }) => {
-  const { removeCartItem } = useCart();
+  const removeCartItem = useCartStore(state => state.removeCartItem);
 
   return (
     <li
       key={item.id}
       className="grid grid-cols-[5rem,1fr,2rem] xl:grid-cols-[6rem,1fr,2rem] gap-8 items-center border-b border-Grayish_blue/25 pb-4 last:border-b-0">
       <figure className="ring-1 ring-Grayish_blue bg-Light_grayish_blue shadow-sm rounded">
-        <img
-          className="rounded w-20 xl:w-full"
-          src={item.image.thumb}
-          alt={`${item.title}`}
-        />
+        <img className="rounded w-20 xl:w-full" src={item.image.thumb} alt={`${item.title}`} />
         <figcaption className="sr-only">product image in shopping cart</figcaption>
       </figure>
 
@@ -31,8 +27,7 @@ export const CartItem = ({ item }: { item: TCartItem }) => {
         </p>
       </div>
 
-      <Button onClick={() => removeCartItem(item.id)}>
-        <span className="sr-only">delete item</span>
+      <Button title="remove item" onClick={() => removeCartItem(item.id)}>
         <DeleteIcon className="hover:fill-Orange xl:scale-125" />
       </Button>
     </li>

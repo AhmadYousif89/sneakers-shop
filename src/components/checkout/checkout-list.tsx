@@ -1,10 +1,8 @@
-import { useCart } from '../../context/cart.context';
+import { useCartStore } from '../../store';
 import { CheckoutItem } from './checkout-item';
 
 export const CheckoutList = () => {
-  const {
-    state: { cart },
-  } = useCart();
+  const cart = useCartStore(state => state.cart);
 
   return (
     <ul className="my-16 xl:my-0 flex flex-col gap-8">

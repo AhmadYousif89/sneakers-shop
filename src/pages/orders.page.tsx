@@ -1,12 +1,11 @@
 import { useParams } from 'react-router-dom';
+import { useUserStore } from '../store';
+
 import profileImg from '../assets/images/avatar.png';
-import { useProfile } from '../context/user.context';
 
 export const Orders = () => {
-  const {
-    state: { orderList },
-  } = useProfile();
   const { id: oId } = useParams();
+  const orderList = useUserStore(state => state.orderList);
 
   const curOrder = orderList.find(order => order.id === oId);
 

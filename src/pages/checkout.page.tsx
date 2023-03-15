@@ -1,20 +1,23 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCartStore } from '../store';
 
-import { useCart } from '../context/cart.context';
 import { Button } from '../components/ui/button';
-import { CheckoutList } from '../components/checkout/checkout-list';
+import { Overlay } from '../components/ui/overlay';
+import { ActionModal } from '../components/ui/action-modal';
+import { NavigateBackIcon, DeleteIcon } from '../components/icons';
 import { PromoCodeInput } from '../components/checkout/promo-code';
+import { CheckoutList } from '../components/checkout/checkout-list';
 import { CheckoutTotal } from '../components/checkout/checkout-total';
-import { NavigateBackIcon } from '../components/icons/navigate-back';
 
 import sideImg from '../assets/images/chkout.jpg';
 import emptyCartImg from '../assets/images/cart-empty.png';
 
 export const Checkout = () => {
   const navigate = useNavigate();
-  const {
-    state: { cart },
-  } = useCart();
+  const [modal, setModal] = useState(false);
+  const cart = useCartStore(state => state.cart);
+  const clearCart = useCartStore(state => state.clearCart);
 
   if (cart.length === 0)
     return (
@@ -29,31 +32,46 @@ export const Checkout = () => {
     );
 
   return (
-    <section className="my-16 mx-8">
-      <div className="relative">
-        <Button
-          title="navigate to previous page"
-          onClick={() => navigate(-1)}
-          className="absolute top-1/2 -translate-y-1/2 left-0"
-          variant={'navigation'}>
-          <NavigateBackIcon />
-        </Button>
-        <h2 className="text-4xl text-Very_dark_blue text-center font-bold mb-8">
-          My Cart
-        </h2>
-      </div>
-      <div className="xl:mt-28 xl:mx-20 xl:grid xl:grid-cols-[1fr,.75fr] xl:gap-16">
-        <div>
-          <CheckoutList />
-          <PromoCodeInput />
-          <CheckoutTotal />
-        </div>
+    <>
+      <ActionModal
+        state={modal}
+        variants={'clear_cart'}
+        onConfirm={() => clearCart()}
+        onCancel={() => setModal(false)}
+      />
 
-        <figure className="hidden xl:block min-h-[60rem] bg-Yellowish_orange">
-          <img src={sideImg} alt="cart side image" className="object-cover w-full" />
-          <figcaption className="sr-only">checkout side image</figcaption>
-        </figure>
-      </div>
-    </section>
+      <section className="my-16 mx-8">
+        <div className="relative">
+          <Button
+            title="previous page"
+            onClick={() => navigate(-1)}
+            className="absolute top-1/2 -translate-y-1/2 left-0"
+            variant={'navigation'}>
+            <NavigateBackIcon />
+          </Button>
+
+          <h2 className="text-4xl text-Very_dark_blue text-center font-bold mb-8">My Cart</h2>
+
+          <Button
+            title="clear cart"
+            onClick={() => setModal(true)}
+            className="absolute top-1/2 -translate-y-1/2 right-0 bg-Grayish_blue/50 w-16 h-16 flex items-center justify-center rounded-lg group">
+            <DeleteIcon className="fill-Very_dark_blue group-hover:fill-Orange" />
+          </Button>
+        </div>
+        <div className="xl:mt-28 xl:mx-20 xl:grid xl:grid-cols-[1fr,.75fr] xl:gap-16">
+          <div>
+            <CheckoutList />
+            <PromoCodeInput />
+            <CheckoutTotal />
+          </div>
+
+          <figure className="hidden xl:block min-h-[60rem] bg-Yellowish_orange">
+            <img src={sideImg} alt="cart side image" className="object-cover w-full" />
+            <figcaption className="sr-only">checkout side image</figcaption>
+          </figure>
+        </div>
+      </section>
+    </>
   );
 };

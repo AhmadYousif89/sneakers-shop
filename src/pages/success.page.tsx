@@ -1,13 +1,11 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SuccessIcon } from '../components/icons/success';
-import { useCart } from '../context/cart.context';
+import { useCartStore } from '../store';
 
 export const Success = () => {
   const navigate = useNavigate();
-  const {
-    state: { cart },
-  } = useCart();
+  const cart = useCartStore(state => state.cart);
 
   useEffect(() => {
     if (cart.length > 0) navigate('/checkout');

@@ -1,14 +1,15 @@
+import { useUserStore } from '../../store';
+
 import { Button } from '../ui/button';
 import { THistoryItem } from '../../types';
 import { product } from '../../data/featured-product';
-import { useProfile } from '../../context/user.context';
 import { SkeletonImage } from '../skeletons/skeleton-image';
 import { useImageLoader } from '../../hooks/use-image-loader';
 
 const productImg = product.image.thumb[0];
 
 export const FeaturedProduct = () => {
-  const { toggleItemHistory } = useProfile();
+  const toggleItemHistory = useUserStore(state => state.toggleItemHistory);
   const { isLoading } = useImageLoader(productImg);
 
   const addToHistoryHandler = () => {
@@ -32,7 +33,7 @@ export const FeaturedProduct = () => {
           </h3>
           <div className="flex flex-col  gap-4 col-start-1">
             <p className="text-xl text-Dark_grayish_blue">
-              Up to {product.discountPercentage}% Discount <br /> valid till 15th May
+              Up to {product.discountPercentage * 100}% Discount <br /> valid till 15th May
             </p>
             <Button
               hasRipple
@@ -60,7 +61,7 @@ export const FeaturedProduct = () => {
           </h3>
           <div className="flex flex-col  gap-4 col-start-1">
             <p className="text-xl text-Dark_grayish_blue">
-              Up to {product.discountPercentage}% Discount <br /> valid till 15th May
+              Up to {product.discountPercentage * 100}% Discount <br /> valid till 15th May
             </p>
             <Button
               hasRipple
@@ -89,7 +90,7 @@ export const FeaturedProduct = () => {
           </h3>
           <div className="flex flex-col  gap-4 col-start-1">
             <p className="text-xl text-Dark_grayish_blue">
-              Up to {product.discountPercentage}% Discount <br /> valid till 15th May
+              Up to {product.discountPercentage * 100}% Discount <br /> valid till 15th May
             </p>
             <Button
               hasRipple

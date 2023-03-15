@@ -1,22 +1,21 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCartStore, useUserStore } from '../../store';
+import { useEventListener } from '../../hooks/use-event-listener';
 
 import { Button } from '../ui/button';
 import { InfoIcon } from '../icons/info';
 import { SpinnerIcon } from '../icons/spinner';
-import { useCart } from '../../context/cart.context';
-import { useProfile } from '../../context/user.context';
-import { useEventListener } from '../../hooks/use-event-listener';
 
 export const CheckoutTotal = () => {
   const navigate = useNavigate();
   const timeoutRef = useRef<number | undefined>();
   const [isChecking, setIsChecking] = useState(false);
-  const {
-    state: { cart },
-    clearCart,
-  } = useCart();
-  const { addOrder } = useProfile();
+
+  const cart = useCartStore(state => state.cart);
+  const clearCart = useCartStore(state => state.clearCart);
+  const addOrder = useUserStore(state => state.addOrder);
+
   const { ref: tipRef, isInside } = useEventListener<HTMLSpanElement>({});
 
   const handleCheckout = () => {

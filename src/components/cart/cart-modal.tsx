@@ -1,15 +1,10 @@
-import { useCart } from '../../context/cart.context';
-import { useUI } from '../../context/ui.context';
-import { CartList } from './cart-list';
 import { Card } from '../ui/card';
+import { CartList } from './cart-list';
+import { useCartStore, useUIStore } from '../../store';
 
 export const CartModal = () => {
-  const {
-    state: { cartIsOpen },
-  } = useUI();
-  const {
-    state: { cart },
-  } = useCart();
+  const cart = useCartStore(state => state.cart);
+  const cartIsOpen = useUIStore(state => state.cartIsOpen);
 
   const subtotal = cart.reduce((acc, curItem) => acc + curItem.price * curItem.qty, 0);
 

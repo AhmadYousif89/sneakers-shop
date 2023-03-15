@@ -1,6 +1,9 @@
-import { PropsWithChildren } from 'react';
+import { MouseEventHandler, PropsWithChildren } from 'react';
 
-type OverlaryProps = { onClick?: () => void; className?: string } & PropsWithChildren;
+type OverlaryProps = {
+  onClick: MouseEventHandler<HTMLElement>;
+  className?: string;
+} & PropsWithChildren;
 
 export const Overlay = ({ children, onClick, className = '' }: OverlaryProps) => {
   return (

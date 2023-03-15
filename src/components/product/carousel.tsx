@@ -1,21 +1,18 @@
 import { useEffect, useRef } from 'react';
+import { useProductStore, useUIStore } from '../../store';
+import { useImageLoader } from '../../hooks/use-image-loader';
 
 import { Button } from '../ui/button';
 import { NavigateBackIcon } from '../icons';
-import { useUI } from '../../context/ui.context';
 import { product } from '../../data/featured-product';
-import { useProducts } from '../../context/products.context';
-import { useImageLoader } from '../../hooks/use-image-loader';
 import { SkeletonCarousel } from '../skeletons/skeleton-carousel';
 
 export const ProductCarousel = ({ inLightbox = false }) => {
-  const { setLightboxState } = useUI();
   const prevBtnRef = useRef<HTMLButtonElement>(null);
   const nextBtnRef = useRef<HTMLButtonElement>(null);
-  const {
-    state: { curImageIdx },
-    curImageHandler,
-  } = useProducts();
+  const curImageIdx = useProductStore(state => state.curImageIdx);
+  const curImageHandler = useProductStore(state => state.curImageHandler);
+  const setLightboxStatus = useUIStore(state => state.setLightboxStatus);
 
   const { full: prodFullImgs, thumb: prodThumbImgs } = product.image;
   const { isLoading, imageRef } = useImageLoader(prodFullImgs);
@@ -99,7 +96,7 @@ export const ProductCarousel = ({ inLightbox = false }) => {
 
           <Button
             hasRipple
-            onClick={() => setLightboxState(true)}
+            onClick={() => setLightboxStatus(true)}
             className={`overflow-hidden text-xl bg-Very_dark_blue/50 rounded-md p-4 ring-1 ring-Light_grayish_blue`}>
             Showcase
           </Button>
@@ -128,9 +125,7 @@ export const ProductCarousel = ({ inLightbox = false }) => {
               inLightbox ? 'shadow-none' : ''
             }`}>
             <img src={imgThumb} alt="sneakers thumbnail image" className="w-40" />
-            <figcaption className="sr-only">
-              showcasing the sneaker images thumbnails
-            </figcaption>
+            <figcaption className="sr-only">showcasing the sneaker images thumbnails</figcaption>
           </figure>
         ))}
       </div>

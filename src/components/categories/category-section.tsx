@@ -1,32 +1,13 @@
-import { useEffect } from 'react';
-
-import { useProducts } from '../../context/products.context';
-import { TProductCategory } from '../../types/product.type';
+import { useProductStore } from '../../store';
+import { TProductCategory } from '../../types';
 import { CategoryList } from './category-list';
 import { Button } from '../ui/button';
 
-const categories: TProductCategory[] = [
-  'sports',
-  'fashion',
-  'gym',
-  'running',
-  'training',
-];
+const categories: TProductCategory[] = ['sports', 'fashion', 'gym', 'running', 'training'];
 
 export const CategorySection = () => {
-  const {
-    state: { selectedCategory, isLoading },
-    setSelectedCategory,
-    setProductIsLoading,
-  } = useProducts();
-
-  useEffect(() => {
-    if (!isLoading) return;
-    const id = setTimeout(() => {
-      setProductIsLoading(false);
-    }, 1000);
-    return () => clearTimeout(id);
-  }, [isLoading]);
+  const selectedCategory = useProductStore(state => state.selectedCategory);
+  const setSelectedCategory = useProductStore(state => state.setSelectedCategory);
 
   return (
     <section className="mt-20 mb-28 mx-8 flex flex-col gap-4">
@@ -38,11 +19,7 @@ export const CategorySection = () => {
             key={category}
             variant="category"
             aria-pressed={selectedCategory === category}
-            onClick={() => {
-              if (selectedCategory === category) return;
-              setProductIsLoading(true);
-              setSelectedCategory(category);
-            }}>
+            onClick={() => setSelectedCategory(category)}>
             <span>{category}</span>
           </Button>
         ))}

@@ -1,14 +1,10 @@
-import { useCart } from '../../context/cart.context';
-import { useUI } from '../../context/ui.context';
 import { Button } from '../ui/button';
 import { CartItem } from './cart-item';
+import { useCartStore, useUIStore } from '../../store';
 
 export const CartList = () => {
-  const {
-    state: { cart },
-  } = useCart();
-
-  const { setCartState } = useUI();
+  const cart = useCartStore(state => state.cart);
+  const setCartStatus = useUIStore(state => state.setCartStatus);
 
   return (
     <section className="p-8">
@@ -22,7 +18,7 @@ export const CartList = () => {
         href="/checkout"
         variant="cart_chk"
         className="mb-4"
-        onClick={() => setCartState(false)}>
+        onClick={() => setCartStatus(false)}>
         <span>checkout</span>
       </Button>
     </section>

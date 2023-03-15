@@ -1,10 +1,9 @@
-import { useProducts } from '../../context/products.context';
+import { useProductStore } from '../../store';
 import { CategoryItem } from './category-item';
 
 export const CategoryList = () => {
-  const {
-    state: { products, selectedCategory },
-  } = useProducts();
+  const products = useProductStore(state => state.products);
+  const selectedCategory = useProductStore(state => state.selectedCategory);
 
   const filteredProducts = products.filter(p => p.category === selectedCategory);
 

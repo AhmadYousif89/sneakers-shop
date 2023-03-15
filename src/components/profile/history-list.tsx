@@ -1,14 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { useProfile } from '../../context/user.context';
-import { CloseIcon } from '../icons';
+import { useUserStore } from '../../store';
 import { Button } from '../ui/button';
+import { CloseIcon } from '../icons';
 
 export const HistoryList = () => {
-  const {
-    state: { historyList },
-    toggleItemHistory,
-  } = useProfile();
   const navigate = useNavigate();
+  const historyList = useUserStore(state => state.historyList);
+  const toggleItemHistory = useUserStore(state => state.toggleItemHistory);
 
   if (historyList.length === 0)
     return (

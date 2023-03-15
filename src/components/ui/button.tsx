@@ -38,13 +38,15 @@ const buttonVariants = cva(
         category:
           'text-xl text-Grayish_blue capitalize px-6 py-4 bg-Light_grayish_blue rounded-full focus-visible:outline-1 focus-visible:outline-Dark_grayish_blue focus-visible:bg-transparent focus-visible:text-Very_dark_blue aria-pressed:outline aria-pressed:outline-1 aria-pressed:outline-Dark_grayish_blue aria-pressed:bg-transparent aria-pressed:text-Very_dark_blue',
         navigation:
-          'bg-slate-100 p-2 rounded-xl flex-center fill-Very_dark_blue hover:fill-Dark_grayish_blue focus-visible:fill-Dark_grayish_blue focus-visible:outline-1 focus-visible:outline-Very_dark_blue',
+          'bg-Grayish_blue/50 p-2 rounded-xl flex-center fill-Very_dark_blue hover:fill-Dark_grayish_blue focus-visible:fill-Dark_grayish_blue focus-visible:outline-1 focus-visible:outline-Very_dark_blue',
         profile:
           'flex-1 flex items-center justify-center text-2xl font-bold text-Grayish_blue capitalize xl:border-r-2 xl:border-Grayish_blue text-center last:pr-0 last:border-0 hover:text-Dark_grayish_blue aria-pressed:text-Dark_grayish_blue',
         profile_del:
           'scale-75 rounded-md bg-Orange/25 p-3 hover:ring-1 hover:ring-Dark_grayish_blue',
         caruosel:
           'bg-Light_grayish_blue p-2 rounded-full focus-visible:outline-2 focus-visible:outline-Light_grayish_blue focus-visible:bg-transparent',
+        modal_btns:
+          'text-2xl text-Dark_grayish_blue capitalize min-w-[9rem] tracking-wide ring-2 ring-Light_grayish_blue px-6 py-3 rounded-md transition-colors duration-200 hover:ring-0 hover:text-white',
       },
       size: {},
     },
@@ -56,9 +58,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const [ripples, setRipples] = useState<Ripple[]>([]);
     const timeoutRef = useRef<number | undefined>();
 
-    const onPointerDown: PointerEventHandler<
-      HTMLButtonElement | HTMLAnchorElement
-    > = e => {
+    const onPointerDown: PointerEventHandler<HTMLButtonElement | HTMLAnchorElement> = e => {
       e.preventDefault();
       if (!hasRipple) return;
 
