@@ -21,14 +21,15 @@ type InitUserStoreState = UserState & UserActions;
 
 const key = 'user-store';
 
-const { state } = JSON.parse(localStorage.getItem(key) as string) as StorageValue<UserState>;
+const { state } =
+  (JSON.parse(localStorage.getItem(key) as string) as StorageValue<UserState>) ?? {};
 
 export const useUserStore = create<InitUserStoreState>()(
   persist(
     (set, get) => ({
-      favoriteList: state.favoriteList ?? [],
-      historyList: state.historyList ?? [],
-      orderList: state.orderList ?? [],
+      favoriteList: state?.favoriteList ?? [],
+      historyList: state?.historyList ?? [],
+      orderList: state?.orderList ?? [],
       toggleItemFavorite: payload => {
         const exItem = get().favoriteList.find(item => item.id === payload.id);
         if (exItem) {

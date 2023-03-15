@@ -1,13 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 
+import { NotFound } from './pages/404.page';
 import { Checkout } from './pages/checkout.page';
 import { Product } from './pages/product.page';
 import { Success } from './pages/success.page';
-import { NotFound } from './pages/404.page';
+import { Orders } from './pages/orders.page';
 import { Home } from './pages/home.page';
 
 import { Shop } from './components/shop';
-import { Orders } from './pages/orders.page';
 
 function App() {
   return (
