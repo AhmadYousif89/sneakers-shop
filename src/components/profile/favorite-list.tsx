@@ -18,7 +18,9 @@ export const FavoriteList = () => {
     item.title.toLowerCase().includes(query.toLowerCase()),
   );
 
-  const noQueryMsg = <h2 className="place-self-center">We can't find what you're looking for !</h2>;
+  const noQueryMsg = (
+    <h2 className="place-self-center mt-20">We can't find what you're looking for !</h2>
+  );
 
   return (
     <div className="flex flex-col capitalize text-center">
