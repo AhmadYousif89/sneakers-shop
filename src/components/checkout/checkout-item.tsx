@@ -15,11 +15,7 @@ export const CheckoutItem = ({ cartItem }: { cartItem: TCartItem }) => {
       key={cartItem.id}
       className="bg-Light_grayish_blue shadow-sm px-6 py-4 rounded-3xl flex items-center gap-4 xl:gap-12">
       <figure className="rounded-3xl bg-Grayish_blue w-28 xl:w-36">
-        <img
-          alt={cartItem.title}
-          src={cartItem.image.thumb}
-          className="w-full rounded-3xl"
-        />
+        <img alt={cartItem.title} src={cartItem.image.thumb} className="w-full rounded-3xl" />
         <figcaption className="sr-only">product image</figcaption>
       </figure>
 
@@ -40,18 +36,18 @@ export const CheckoutItem = ({ cartItem }: { cartItem: TCartItem }) => {
 
       <div className="flex flex-col items-center gap-4 ml-auto bg-white py-3 px-2 rounded-3xl">
         <Button
+          title="decrement item quantity"
           onClick={() => decrementCartItem(cartItem.id)}
-          className="text-Dark_grayish_blue p-2 rounded-full focus-visible:bg-Grayish_blue focus-visible:text-Dark_grayish_blue active:translate-y-px hover:bg-Light_grayish_blue">
-          <span className="sr-only">decrement item quantity</span>
+          className="text-Dark_grayish_blue hover:text-Orange p-2 rounded-full focus-visible:text-Orange active:translate-y-px hover:bg-Light_grayish_blue">
           <MinusIcon />
         </Button>
 
         <span className="text-xl font-bold xl:text-2xl">{cartItem.qty}</span>
 
         <Button
+          title="increment item quantity"
           onClick={() => incrementCartItem(cartItem.id)}
-          className="text-Dark_grayish_blue p-2 rounded-full focus-visible:bg-Grayish_blue focus-visible:text-Dark_grayish_blue active:translate-y-px hover:bg-Light_grayish_blue">
-          <span className="sr-only">increment item quantity</span>
+          className="text-Dark_grayish_blue hover:text-Orange p-2 rounded-full focus-visible:text-Orange active:translate-y-px hover:bg-Light_grayish_blue">
           <PlusIcon />
         </Button>
       </div>

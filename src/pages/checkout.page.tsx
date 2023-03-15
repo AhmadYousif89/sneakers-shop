@@ -55,8 +55,8 @@ export const Checkout = () => {
           <Button
             title="clear cart"
             onClick={() => setModal(true)}
-            className="absolute top-1/2 -translate-y-1/2 right-0 bg-Grayish_blue/50 w-16 h-16 flex items-center justify-center rounded-lg group">
-            <DeleteIcon className="fill-Very_dark_blue group-hover:fill-Orange" />
+            className="group absolute top-1/2 -translate-y-1/2 right-0 bg-Grayish_blue/50 w-16 h-16 flex items-center justify-center rounded-lg ">
+            <DeleteIcon className="fill-Very_dark_blue group-hover:fill-Orange group-focus-visible:fill-Orange" />
           </Button>
         </div>
         <div className="xl:mt-28 xl:mx-20 xl:grid xl:grid-cols-[1fr,.75fr] xl:gap-16">

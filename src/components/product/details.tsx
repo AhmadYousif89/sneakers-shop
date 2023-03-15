@@ -48,18 +48,14 @@ export const ProductDetails = () => {
         <h3 className="text-xl text-Orange/80 tracking-wider font-bold uppercase">
           sneaker company
         </h3>
-        <h2 className="text-5xl text-Very_dark_blue font-bold capitalize mb-4">
-          {product.title}
-        </h2>
+        <h2 className="text-5xl text-Very_dark_blue font-bold capitalize mb-4">{product.title}</h2>
         <p className="text-[1.6rem] text-Dark_grayish_blue/80">{product.description}</p>
       </div>
 
       <div className="grid gap-8">
         <div className="flex items-center justify-between xl:flex-col xl:items-start xl:gap-8">
           <div className="flex items-center gap-8">
-            <span className="text-4xl font-bold">
-              ${product.discountedPrice.toFixed(2)}
-            </span>
+            <span className="text-4xl font-bold">${product.discountedPrice.toFixed(2)}</span>
             <span className="font-bold bg-Pale_orange text-Orange px-3 py-1 rounded-md text-2xl">
               {product.discountPercentage * 100}%
             </span>
@@ -73,11 +69,12 @@ export const ProductDetails = () => {
       <div className="xl:flex xl:items-center xl:gap-6">
         <div className="relative flex items-center justify-between gap-4 bg-Light_grayish_blue py-6 px-4 my-16 rounded-xl xl:w-1/2">
           <Button
+            title="decrease quantity"
             onClick={() => {
               setItemQty(pv => (pv > 0 ? --pv : 0));
               setShowMsg(false);
             }}
-            className="text-Orange p-2 rounded-full focus-visible:bg-Grayish_blue focus-visible:text-Orange active:translate-y-px hover:bg-Light_grayish_blue">
+            className="text-Orange p-2 rounded-full focus-visible:text-Orange active:translate-y-px hover:bg-Light_grayish_blue">
             <MinusIcon className="w-7 h-7" />
           </Button>
 
@@ -86,11 +83,12 @@ export const ProductDetails = () => {
           </span>
 
           <Button
+            title="increase quantity"
             onClick={() => {
               setItemQty(pv => (pv === 10 ? 10 : ++pv));
               setShowMsg(false);
             }}
-            className="text-Orange p-2 rounded-full focus-visible:bg-Grayish_blue focus-visible:text-Orange active:translate-y-px hover:bg-Light_grayish_blue">
+            className="text-Orange p-2 rounded-full focus-visible:text-Orange active:translate-y-px hover:bg-Light_grayish_blue">
             <PlusIcon className="w-7 h-7" />
           </Button>
 
@@ -104,6 +102,7 @@ export const ProductDetails = () => {
 
         <Button
           hasRipple
+          title="add item to cart"
           variant={'cart_chk'}
           onClick={handleItemToCart}
           className="flex items-center justify-center gap-8 w-full shadow-xl shadow-Orange/30 xl:w-2/3">
