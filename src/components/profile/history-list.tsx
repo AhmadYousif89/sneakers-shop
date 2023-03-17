@@ -6,7 +6,7 @@ import { CloseIcon } from '../icons';
 export const HistoryList = () => {
   const navigate = useNavigate();
   const historyList = useUserStore(state => state.historyList);
-  const toggleItemHistory = useUserStore(state => state.toggleItemHistory);
+  const removeItemHistory = useUserStore(state => state.removeItemHistory);
 
   if (historyList.length === 0)
     return (
@@ -28,7 +28,7 @@ export const HistoryList = () => {
               title="delete item from history"
               onClick={e => {
                 e.stopPropagation();
-                toggleItemHistory({ ...item });
+                removeItemHistory(item.id);
               }}
               className="absolute top-1/2 -translate-y-1/2 left-2"
               variant={'profile_del'}>

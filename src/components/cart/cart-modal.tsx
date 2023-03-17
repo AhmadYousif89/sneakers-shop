@@ -15,7 +15,7 @@ export const CartModal = () => {
   return (
     <Card
       onClick={e => e.stopPropagation()}
-      className={`absolute z-10 top-24 left-1/2 xl:left-full xl:-translate-x-[102%] -translate-x-1/2 w-11/12 max-w-3xl ${animate} transition-all duration-[var(--duration)] ease-in-out`}>
+      className={`absolute top-24 left-1/2 xl:left-full xl:-translate-x-[102%] -translate-x-1/2 w-11/12 max-w-3xl ${animate} transition-all duration-[var(--duration)] ease-in-out`}>
       <div className="flex items-center justify-between p-8 capitalize border-b border-Grayish_blue/25 tracking-wide">
         <h2 className="text-3xl font-bold xl:text-4xl">cart</h2>
 

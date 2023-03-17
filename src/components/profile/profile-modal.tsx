@@ -12,11 +12,7 @@ const options = ['favorites', 'orders', 'history'] as const;
 export const ProfileModal = () => {
   const [profileOption, setProfileOption] = useState<typeof options[number]>('favorites');
   const profileIsOpen = useUIStore(state => state.profileIsOpen);
-  const [favoriteList, historyList, orderList] = useUserStore(state => [
-    state.favoriteList,
-    state.historyList,
-    state.orderList,
-  ]);
+  const { favoriteList, historyList, orderList } = useUserStore(state => state);
 
   const animate = profileIsOpen
     ? 'translate-y-16 xl:translate-y-20 opacity-100 visible'
@@ -25,7 +21,8 @@ export const ProfileModal = () => {
   return (
     <Card
       onClick={e => e.stopPropagation()}
-      className={`absolute z-10 top-24 left-1/2 xl:left-full xl:-translate-x-[102%] max-w-4xl -translate-x-1/2 w-11/12 ${animate} transition-all duration-[var(--duration)] ease-in-out min-h-[20rem]`}>
+      className={`absolute top-24 left-1/2 xl:left-full xl:-translate-x-[102%] max-w-4xl -translate-x-1/2 w-11/12 ${animate} transition-all duration-[var(--duration)] ease-in-out min-h-[20rem]`}>
+      {/* ////////////////////////////// */}
       <div className="flex items-center justify-between p-8 gap-2 capitalize border-b border-Grayish_blue/25 tracking-wide">
         <Button
           aria-pressed={profileOption === 'favorites'}

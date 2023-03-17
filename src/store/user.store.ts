@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist, StorageValue } from 'zustand/middleware';
-import { TFavoriteItem, THistoryItem, TOrder, TOrderItem } from '../types';
+import { TFavoriteItem, THistoryItem, TOrder } from '../types';
 
 type UserState = {
   favoriteList: TFavoriteItem[];
@@ -11,9 +11,10 @@ type UserState = {
 type UserActions = {
   toggleItemFavorite: (payload: TFavoriteItem) => void;
   clearFavorites: () => void;
-  toggleItemHistory: (payload: THistoryItem) => void;
+  addItemHistory: (item: THistoryItem) => void;
+  removeItemHistory: (id: number) => void;
   clearHistory: () => void;
-  addOrder: (payload: TOrderItem) => void;
+  addOrder: (order: TOrder) => void;
   clearOrders: () => void;
 };
 
@@ -42,25 +43,25 @@ export const useUserStore = create<InitUserStoreState>()(
       },
       clearFavorites: () => set({ favoriteList: [] }),
 
-      toggleItemHistory: payload => {
-        const exItem = get().historyList.find(item => item.id === payload.id);
+      addItemHistory: item => {
+        const exItem = get().historyList.find(item => item.id === item.id);
+        if (exItem) return;
+        else {
+          const newHistory = [...get().historyList, item];
+          set({ historyList: newHistory });
+        }
+      },
+      removeItemHistory: itemId => {
+        const exItem = get().historyList.find(item => item.id === itemId);
         if (exItem) {
           const newHistorys = get().historyList.filter(item => item.id !== exItem.id);
           set({ historyList: newHistorys });
-        } else {
-          const newHistory = [...get().historyList, payload];
-          set({ historyList: newHistory });
         }
       },
       clearHistory: () => set({ historyList: [] }),
 
       addOrder: payload => {
-        const newOrder: TOrder = {
-          id: Math.random().toString(36).substring(6),
-          order: payload,
-          date: new Date().toLocaleString().replace(',', ' at '),
-        };
-        const newOrderList = [...get().orderList, newOrder];
+        const newOrderList = [...get().orderList, payload];
         set({ orderList: newOrderList });
       },
       clearOrders: () => set({ orderList: [] }),

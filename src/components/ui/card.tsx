@@ -1,20 +1,16 @@
-import { FC, MouseEventHandler, PropsWithChildren } from 'react';
+import { forwardRef, HTMLAttributes, PropsWithChildren } from 'react';
 
-type CardProps = {
-  className?: string;
-  onClick?: MouseEventHandler<HTMLDivElement>;
-};
+type CardProps = HTMLAttributes<HTMLDivElement> & PropsWithChildren;
 
-export const Card: FC<PropsWithChildren<CardProps>> = ({
-  children,
-  className = '',
-  onClick,
-}) => {
-  return (
-    <div
-      onClick={onClick}
-      className={`${className} z-[100] bg-White drop-shadow-xl shadow-Orange rounded-xl`}>
-      {children}
-    </div>
-  );
-};
+export const Card = forwardRef<HTMLDivElement, CardProps>(
+  ({ children, className = '', onClick }, ref) => {
+    return (
+      <div
+        ref={ref}
+        onClick={onClick}
+        className={`${className} z-[100] bg-White drop-shadow-xl shadow-Orange rounded-xl`}>
+        {children}
+      </div>
+    );
+  },
+);

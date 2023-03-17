@@ -2,13 +2,12 @@ import { create } from 'zustand';
 import { TCartItem } from '../types';
 import { cartItems } from '../data/cart-items';
 
-type CartDiscount = 'full-disc' | 'half-disc' | '';
+export type CartDiscount = 'full-disc' | 'half-disc' | '';
 export type PromoCodes = 'IHaveNoMoney_100' | 'ILoveYou_50' | '';
 type CartState = {
   cart: TCartItem[];
   cartDiscount: CartDiscount;
-  cartSubtotal: number;
-  cartTotalDiscount: number;
+  shippingLimit: number;
 };
 type CartActions = {
   addCartItem: (item: TCartItem) => void;
@@ -16,8 +15,9 @@ type CartActions = {
   incrementCartItem: (itemItemId: number) => void;
   decrementCartItem: (itemItemId: number) => void;
   setCartDiscount: (text: PromoCodes) => void;
-  getCartSubtotal: () => number;
-  getCartTotalDiscount: () => number;
+  getSubtotal: () => number;
+  getTotalDiscount: () => number;
+  getDeliveryFees: () => number;
   clearCart: () => void;
 };
 
@@ -26,8 +26,7 @@ type InitCartStore = CartState & CartActions;
 export const useCartStore = create<InitCartStore>((set, get) => ({
   cart: cartItems,
   cartDiscount: '',
-  cartSubtotal: 0,
-  cartTotalDiscount: 0,
+  shippingLimit: 300,
   addCartItem: payload => {
     const exItem = get().cart.find(item => item.id === payload.id);
     if (exItem) {
@@ -73,7 +72,7 @@ export const useCartStore = create<InitCartStore>((set, get) => ({
     if (code === 'ILoveYou_50') set({ cartDiscount: 'half-disc' });
     if (code === '') set({ cartDiscount: '' });
   },
-  getCartSubtotal: () => {
+  getSubtotal: () => {
     return get().cart.reduce((acc, curItem) => {
       let total = 0;
       const originalPrice = curItem.price / (1 - curItem.discountPercentage);
@@ -81,13 +80,23 @@ export const useCartStore = create<InitCartStore>((set, get) => ({
       return acc + total;
     }, 0);
   },
-  getCartTotalDiscount: () => {
+  getTotalDiscount: () => {
     return get().cart.reduce((acc, curItem) => {
       let discount = 0;
       const originalPrice = curItem.price / (1 - curItem.discountPercentage);
       discount += originalPrice * curItem.discountPercentage * curItem.qty;
       return acc + discount;
     }, 0);
+  },
+  getDeliveryFees: () => {
+    let hasDeliveryFees = get().getSubtotal() < get().shippingLimit;
+    let deliveryFees = 0;
+
+    if (hasDeliveryFees) deliveryFees = 50;
+    if (hasDeliveryFees && get().cartDiscount === 'half-disc') deliveryFees = 25;
+    if (!hasDeliveryFees || get().cartDiscount === 'full-disc') deliveryFees = 0;
+
+    return deliveryFees;
   },
   clearCart: () => set({ cart: [] }),
 }));

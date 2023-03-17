@@ -9,7 +9,7 @@ import { useImageLoader } from '../../hooks/use-image-loader';
 const productImg = product.image.thumb[0];
 
 export const FeaturedProduct = () => {
-  const toggleItemHistory = useUserStore(state => state.toggleItemHistory);
+  const addItemHistory = useUserStore(state => state.addItemHistory);
   const { isLoading } = useImageLoader(productImg);
 
   const addToHistoryHandler = () => {
@@ -18,7 +18,7 @@ export const FeaturedProduct = () => {
       title: product.title,
       image: { full: '', thumb: productImg },
     };
-    toggleItemHistory(item);
+    addItemHistory(item);
   };
 
   return (

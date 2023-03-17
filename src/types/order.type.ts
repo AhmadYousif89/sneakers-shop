@@ -1,4 +1,13 @@
+import { CartDiscount } from '../store';
 import { TCartItem } from './TCartItem';
 
-export type TOrderItem = Omit<TCartItem, 'availableQty'>[];
-export type TOrder = { id: string; order: TOrderItem; date: string };
+export type TOrder = {
+  id: string;
+  cart: TCartItem[];
+  subtotal: number;
+  totalDiscount: number;
+  cartDiscount: CartDiscount;
+  deliveryFees: number;
+  totalDue: number;
+  date: string;
+};
