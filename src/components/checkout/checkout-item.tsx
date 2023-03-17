@@ -5,6 +5,8 @@ import { MinusIcon, PlusIcon } from '../icons';
 import { TCartItem } from '../../types/TCartItem';
 
 export const CheckoutItem = ({ cartItem }: { cartItem: TCartItem }) => {
+  const getTotalQty = useCartStore(state => state.getTotalQty);
+  const setCartWarning = useCartStore(state => state.setCartWarning);
   const incrementCartItem = useCartStore(state => state.incrementCartItem);
   const decrementCartItem = useCartStore(state => state.decrementCartItem);
 
@@ -35,7 +37,13 @@ export const CheckoutItem = ({ cartItem }: { cartItem: TCartItem }) => {
       <div className="flex flex-col items-center gap-4 ml-auto bg-white py-3 px-2 rounded-3xl">
         <Button
           title="decrement item quantity"
-          onClick={() => decrementCartItem(cartItem.id)}
+          onClick={() => {
+            if (getTotalQty() === 1) {
+              setCartWarning(true);
+              return;
+            }
+            decrementCartItem(cartItem.id);
+          }}
           className="text-Dark_grayish_blue hover:text-Orange p-2 rounded-full focus-visible:text-Orange active:translate-y-px hover:bg-Light_grayish_blue">
           <MinusIcon />
         </Button>

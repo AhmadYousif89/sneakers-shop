@@ -17,6 +17,7 @@ export const Header = ({ children }: PropsWithChildren) => {
     state.setMenuStatus,
   ]);
   const cart = useCartStore(state => state.cart);
+  const getTotalQty = useCartStore(state => state.getTotalQty);
 
   const { ref: cartRef } = useEventListener<HTMLButtonElement>({
     insideElement: () => setCartStatus(pv => !pv),
@@ -28,8 +29,7 @@ export const Header = ({ children }: PropsWithChildren) => {
     outsideElement: () => setProfileStatus(false),
   });
 
-  let totalQty;
-  totalQty = cart.reduce((acc, curItem) => acc + curItem.qty, 0);
+  let totalQty: string | number = getTotalQty();
   if (totalQty > 99) totalQty = `99+`;
 
   return (

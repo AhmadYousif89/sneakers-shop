@@ -8,6 +8,7 @@ type CartState = {
   cart: TCartItem[];
   cartDiscount: CartDiscount;
   shippingLimit: number;
+  showWarning: boolean;
 };
 type CartActions = {
   addCartItem: (item: TCartItem) => void;
@@ -15,7 +16,9 @@ type CartActions = {
   incrementCartItem: (itemItemId: number) => void;
   decrementCartItem: (itemItemId: number) => void;
   setCartDiscount: (text: PromoCodes) => void;
+  setCartWarning: (status: boolean) => void;
   getSubtotal: () => number;
+  getTotalQty: () => number;
   getTotalDiscount: () => number;
   getDeliveryFees: () => number;
   clearCart: () => void;
@@ -27,6 +30,7 @@ export const useCartStore = create<InitCartStore>((set, get) => ({
   cart: cartItems,
   cartDiscount: '',
   shippingLimit: 300,
+  showWarning: false,
   addCartItem: payload => {
     const exItem = get().cart.find(item => item.id === payload.id);
     if (exItem) {
@@ -72,6 +76,7 @@ export const useCartStore = create<InitCartStore>((set, get) => ({
     if (code === 'ILoveYou_50') set({ cartDiscount: 'half-disc' });
     if (code === '') set({ cartDiscount: '' });
   },
+  setCartWarning: status => set({ showWarning: status }),
   getSubtotal: () => {
     return get().cart.reduce((acc, curItem) => {
       let total = 0;
@@ -87,6 +92,9 @@ export const useCartStore = create<InitCartStore>((set, get) => ({
       discount += originalPrice * curItem.discountPercentage * curItem.qty;
       return acc + discount;
     }, 0);
+  },
+  getTotalQty: () => {
+    return get().cart.reduce((acc, curItem) => acc + curItem.qty, 0);
   },
   getDeliveryFees: () => {
     let hasDeliveryFees = get().getSubtotal() < get().shippingLimit;

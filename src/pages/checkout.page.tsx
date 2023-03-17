@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCartStore } from '../store';
 
@@ -18,6 +18,12 @@ export const Checkout = () => {
   const [modal, setModal] = useState(false);
   const cart = useCartStore(state => state.cart);
   const clearCart = useCartStore(state => state.clearCart);
+  const showWarning = useCartStore(state => state.showWarning);
+  const setCartWarning = useCartStore(state => state.setCartWarning);
+
+  useEffect(() => {
+    if (showWarning) setModal(true);
+  }, [showWarning]);
 
   if (cart.length === 0)
     return (
@@ -37,7 +43,10 @@ export const Checkout = () => {
         state={modal}
         variants={'clear_cart'}
         onConfirm={() => clearCart()}
-        onCancel={() => setModal(false)}
+        onCancel={() => {
+          setModal(false);
+          setCartWarning(false);
+        }}
       />
 
       <section className="my-16 mx-8">
