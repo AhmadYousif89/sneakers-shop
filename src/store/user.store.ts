@@ -20,7 +20,7 @@ type UserActions = {
 
 type InitUserStoreState = UserState & UserActions;
 
-const key = 'user-store';
+const key = 'user_store';
 
 const { state } =
   (JSON.parse(localStorage.getItem(key) as string) as StorageValue<UserState>) ?? {};
