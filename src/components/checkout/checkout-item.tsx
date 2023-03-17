@@ -5,10 +5,8 @@ import { MinusIcon, PlusIcon } from '../icons';
 import { TCartItem } from '../../types/TCartItem';
 
 export const CheckoutItem = ({ cartItem }: { cartItem: TCartItem }) => {
-  const [incrementCartItem, decrementCartItem] = useCartStore(state => [
-    state.incrementCartItem,
-    state.decrementCartItem,
-  ]);
+  const incrementCartItem = useCartStore(state => state.incrementCartItem);
+  const decrementCartItem = useCartStore(state => state.decrementCartItem);
 
   return (
     <li

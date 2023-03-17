@@ -54,9 +54,7 @@ export const Orders = () => {
       </div>
 
       <section className="bg-Light_grayish_blue xl:col-span-2 p-8 xl:p-12 rounded-xl row-start-2 col-span-full">
-        <h3 className="text-3xl xl:text-4xl font-bold text-Very_dark_blue/80">
-          Items details
-        </h3>
+        <h3 className="text-3xl xl:text-4xl font-bold text-Very_dark_blue/80">Items details</h3>
 
         <ul className="flex flex-col gap-8 mt-16 xl:gap-16">
           {curOrder.order.map(item => {
@@ -66,11 +64,7 @@ export const Orders = () => {
                 key={item.id}
                 className="group grid grid-cols-[minmax(auto,12rem),minmax(18rem,1fr)] gap-6 items-center xl:gap-12">
                 <figure className="rounded-3xl bg-Grayish_blue">
-                  <img
-                    alt={item.title}
-                    src={item.image.thumb}
-                    className="w-full rounded-3xl"
-                  />
+                  <img alt={item.title} src={item.image.thumb} className="w-full rounded-3xl" />
                   <figcaption className="sr-only">product image</figcaption>
                 </figure>
 
@@ -138,9 +132,7 @@ export const Orders = () => {
       </section>
 
       <section className="bg-Light_grayish_blue p-8 xl:p-12 rounded-xl grid gap-8 xl:col-start-3 xl:row-start-2">
-        <h3 className="text-3xl xl:text-4xl font-bold text-Very_dark_blue/80">
-          Personal info
-        </h3>
+        <h3 className="text-3xl xl:text-4xl font-bold text-Very_dark_blue/80">Personal info</h3>
 
         {/* Personal Info */}
         <div className="pb-8 flex items-center justify-between gap-4 border-b-2 border-Grayish_blue/50">
@@ -176,9 +168,7 @@ export const Orders = () => {
 
       <section className="bg-Light_grayish_blue p-8 xl:p-12 rounded-xl grid gap-8">
         <div className="flex items-center gap-8 xl:gap-16">
-          <h3 className="text-3xl xl:text-4xl font-bold text-Very_dark_blue/80">
-            Status
-          </h3>
+          <h3 className="text-3xl xl:text-4xl font-bold text-Very_dark_blue/80">Status</h3>
           <div className="space-x-2">
             <span className="px-4 py-2 text-lg bg-Orange/80 text-white rounded-md ">
               in process
@@ -194,12 +184,11 @@ export const Orders = () => {
           <span>Thank you for placing an order with</span>
           <b className="text-3xl uppercase text-Orange xl:text-4xl"> sneakers </b>
           <span>
-            We are pleased to confirm that your order has been received and is being
-            processed.
+            We are pleased to confirm that your order has been received and is being processed.
           </span>
           <span>
-            An email with the shipping information and tracking number will be sent once
-            your order has been shipped.
+            An email with the shipping information and tracking number will be sent once your order
+            has been shipped.
           </span>
         </p>
       </section>
