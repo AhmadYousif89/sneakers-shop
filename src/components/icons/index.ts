@@ -14,3 +14,6 @@ export * from './success';
 export * from './twitter';
 export * from './facebook';
 export * from './youtube';
+export * from './lock';
+export * from './email';
+export * from './user';

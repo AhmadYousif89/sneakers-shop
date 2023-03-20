@@ -1,8 +1,8 @@
 import { PropsWithChildren } from 'react';
-import { useCartStore, useUIStore } from '../../store';
+import { useAuthStore, useCartStore, useUIStore } from '../../store';
 import { useEventListener } from '../../hooks/use-event-listener';
 
-import { MenuIcon, CartIcon } from '../icons';
+import { MenuIcon, CartIcon, UserIcon } from '../icons';
 import logo from '../../assets/icons/logo.svg';
 import profileImg from '../../assets/images/avatar.png';
 import { SideNavigation } from './side-nav';
@@ -11,6 +11,7 @@ import { Button } from '../ui/button';
 
 export const Header = ({ children }: PropsWithChildren) => {
   const menuIsOpen = useUIStore(state => state.menuIsOpen);
+  const user = useAuthStore(state => state.user);
   const [setProfileStatus, setCartStatus, setMenuStatus] = useUIStore(state => [
     state.setProfileStatus,
     state.setCartStatus,
@@ -67,13 +68,17 @@ export const Header = ({ children }: PropsWithChildren) => {
         <Button
           ref={profileRef}
           className="hover:ring-2 hover:ring-Orange rounded-full focus-visible:outline-2 focus-visible:outline-Orange">
-          <span className="sr-only">profile image</span>
-          <img
-            className="h-12 xl:h-16 pointer-events-none"
-            alt="user profile icon"
-            src={profileImg}
-            aria-hidden
-          />
+          <span className="sr-only">profile button</span>
+          {user ? (
+            <img
+              className="h-12 xl:h-16 pointer-events-none"
+              alt="user profile icon"
+              src={profileImg}
+              aria-hidden
+            />
+          ) : (
+            <UserIcon className="w-12  h-12 fill-Dark_grayish_blue" />
+          )}
         </Button>
       </div>
 

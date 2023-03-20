@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useCartStore } from '../store';
 
 import { Button } from '../components/ui/button';
-import { Overlay } from '../components/ui/overlay';
 import { ActionModal } from '../components/ui/action-modal';
 import { NavigateBackIcon, DeleteIcon } from '../components/icons';
 import { PromoCodeInput } from '../components/checkout/promo-code';

@@ -1,3 +1,4 @@
+export * from './auth.type';
 export * from './cart.type';
 export * from './favorite.type';
 export * from './history.type';

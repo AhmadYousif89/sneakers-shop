@@ -39,15 +39,13 @@ export const useCartStore = create<InitCartStore>((set, get) => ({
         cart: state.cart.map(item => (item.id !== exItem.id ? item : newItem)),
       }));
     } else {
-      const newCart = [...get().cart, payload];
-      set({ cart: newCart });
+      set(state => ({ cart: [...state.cart, payload] }));
     }
   },
   removeCartItem: itemId => {
     const exItem = get().cart.find(item => item.id === itemId);
     if (exItem) {
-      const newCart = get().cart.filter(item => item.id !== exItem.id);
-      set({ cart: newCart });
+      set(state => ({ cart: state.cart.filter(item => item.id !== exItem.id) }));
     }
   },
   incrementCartItem: itemId => {

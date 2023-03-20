@@ -181,7 +181,7 @@ export const products: TProduct[] = [
     description:
       'The Jordan Delta is a comfortable and stylish sneaker that is perfect for everyday wear.',
     availableQty: 7,
-    discountPercentage: 0,
+    discountPercentage: 10,
     category: 'fashion',
     inStock: true,
     discountedPrice: 130,
@@ -301,7 +301,7 @@ export const products: TProduct[] = [
     description:
       'The Reebok Classic Leather is a timeless sneaker that is both comfortable and stylish.',
     availableQty: 7,
-    discountPercentage: 0,
+    discountPercentage: 20,
     category: 'fashion',
     inStock: true,
     discountedPrice: 75,
@@ -328,8 +328,7 @@ export const products: TProduct[] = [
     size: '9.5',
     color: 'White',
     price: 80,
-    description:
-      'The Adidas Superstar is a classic sneaker that is both comfortable and stylish.',
+    description: 'The Adidas Superstar is a classic sneaker that is both comfortable and stylish.',
     availableQty: 5,
     discountPercentage: 0,
     category: 'fashion',

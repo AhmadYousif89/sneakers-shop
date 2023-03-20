@@ -34,11 +34,11 @@ export const useUserStore = create<InitUserStoreState>()(
       toggleItemFavorite: payload => {
         const exItem = get().favoriteList.find(item => item.id === payload.id);
         if (exItem) {
-          const newFavorites = get().favoriteList.filter(item => item.id !== exItem.id);
-          set({ favoriteList: newFavorites });
+          set(state => ({
+            favoriteList: state.favoriteList.filter(item => item.id !== exItem.id),
+          }));
         } else {
-          const newFavorites = [...get().favoriteList, payload];
-          set({ favoriteList: newFavorites });
+          set(state => ({ favoriteList: [...state.favoriteList, payload] }));
         }
       },
       clearFavorites: () => set({ favoriteList: [] }),
@@ -46,23 +46,15 @@ export const useUserStore = create<InitUserStoreState>()(
       addItemHistory: item => {
         const exItem = get().historyList.find(item => item.id === item.id);
         if (exItem) return;
-        else {
-          const newHistory = [...get().historyList, item];
-          set({ historyList: newHistory });
-        }
+        else set(state => ({ historyList: [...state.historyList, item] }));
       },
       removeItemHistory: itemId => {
-        const exItem = get().historyList.find(item => item.id === itemId);
-        if (exItem) {
-          const newHistorys = get().historyList.filter(item => item.id !== exItem.id);
-          set({ historyList: newHistorys });
-        }
+        set(state => ({ historyList: state.historyList.filter(item => item.id !== itemId) }));
       },
       clearHistory: () => set({ historyList: [] }),
 
       addOrder: payload => {
-        const newOrderList = [...get().orderList, payload];
-        set({ orderList: newOrderList });
+        set(state => ({ orderList: [...state.orderList, payload] }));
       },
       clearOrders: () => set({ orderList: [] }),
     }),

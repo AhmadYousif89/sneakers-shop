@@ -1,5 +1,5 @@
 import { CartDiscount } from '../store';
-import { TCartItem } from './TCartItem';
+import { TCartItem } from '.';
 
 export type TOrder = {
   id: string;

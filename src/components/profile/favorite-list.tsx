@@ -24,13 +24,13 @@ export const FavoriteList = () => {
 
   return (
     <div className="flex flex-col capitalize text-center">
-      <label htmlFor="search-favorites">
+      <label htmlFor="search-favorites" className="self-center">
         <input
           type="text"
           id="search-favorites"
           onChange={e => setQuery(e.target.value)}
           placeholder="Search your favorite sneaker"
-          className="ml-4 px-6 py-2 focus-visible:outline-Orange focus-visible:outline-1 focus-visible:outline rounded-md text-Very_dark_blue ring-1 ring-Grayish_blue placeholder:text-center placeholder:text-xl"
+          className="ml-4 px-6 py-2 focus-visible:outline-Orange shadow focus-visible:outline-1 focus-visible:outline rounded-md text-Very_dark_blue ring-1 ring-Grayish_blue placeholder:text-center placeholder:text-xl"
         />
       </label>
 

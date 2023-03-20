@@ -8,6 +8,7 @@ import { Orders } from './pages/orders.page';
 import { Home } from './pages/home.page';
 
 import { Shop } from './components/shop';
+import { Auth } from './pages/auth.page';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="checkout/success" element={<Success />} />
         <Route path="*" element={<NotFound />} />
       </Route>
+      <Route path="auth" element={<Auth />} />
     </Routes>
   );
 }

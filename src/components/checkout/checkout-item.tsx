@@ -2,7 +2,7 @@ import { useCartStore } from '../../store';
 
 import { Button } from '../ui/button';
 import { MinusIcon, PlusIcon } from '../icons';
-import { TCartItem } from '../../types/TCartItem';
+import { TCartItem } from '../../types';
 
 export const CheckoutItem = ({ cartItem }: { cartItem: TCartItem }) => {
   const getTotalQty = useCartStore(state => state.getTotalQty);

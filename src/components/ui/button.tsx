@@ -20,8 +20,11 @@ interface LinkAttributes extends AnchorHTMLAttributes<HTMLAnchorElement> {}
 // prettier-ignore
 type ButtonProps = {
   href?: LinkHrefs;
-  hasRipple?:boolean;
-} & ButtonAttributes & LinkAttributes & VariantProps<typeof buttonVariants>;
+  hasRipple?: boolean;
+  rippleColor?:string;
+} & ButtonAttributes &
+  LinkAttributes &
+  VariantProps<typeof buttonVariants>;
 
 const buttonVariants = cva(
   'relative block text-2xl text-Light_grayish_blue text-center transition-all outline-none outline-offset-0 focus:outline-none focus-visible:outline-offset-0 focus-visible:outline-1 focus-visible:outline-Dark_grayish_blue',
@@ -54,7 +57,7 @@ const buttonVariants = cva(
 );
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ href = '', hasRipple, variant, size, className, ...props }, ref) => {
+  ({ href = '', hasRipple, rippleColor, variant, size, className, ...props }, ref) => {
     const [ripples, setRipples] = useState<Ripple[]>([]);
     const timeoutRef = useRef<number | undefined>();
 
@@ -79,7 +82,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const ripElements = ripples.map((ripple, idx) => (
       <span
         key={idx}
-        className="absolute bg-Pale_orange rounded-full pointer-events-none animate-ripple"
+        className={`absolute ${
+          rippleColor ? rippleColor : 'bg-Pale_orange'
+        } rounded-full pointer-events-none animate-ripple`}
         style={{
           top: ripple.y,
           left: ripple.x,

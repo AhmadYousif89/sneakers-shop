@@ -21,7 +21,17 @@ export const CategoryItem = ({ item }: { item: TProduct }) => {
   if (isLoading) return <SkeletonItem />;
 
   return (
-    <li className="w-96 min-h-[33rem] flex flex-col justify-between gap-4 bg-Light_grayish_blue p-8 rounded-3xl shadow-sm">
+    <li className="relative w-96 min-h-[33rem] flex flex-col justify-between gap-4 bg-Light_grayish_blue p-8 rounded-3xl shadow-sm">
+      {/* ////////////// */}
+      {item.discountPercentage > 0 && (
+        <div className="absolute top-5 left-0 bg-Pale_orange w-28 h-12 flex items-center justify-center gap-2 text-2xl text-Orange rounded-tr-md rounded-br-md">
+          <span>off</span>
+          <span>
+            <b className="pr-1">{item.discountPercentage}</b>%
+          </span>
+        </div>
+      )}
+
       <figure className="relative w-full min-h-[17rem] flex-center isolate before:absolute before:w-56 before:h-56 before:bg-gradient-to-br before:from-Orange/40 before:to-Orange/80 before:rounded-full before:-z-10 before:shadow-lg">
         <img ref={imageRef} src={itemImage} alt={item.title} />
         <figcaption className="sr-only">product image in the category section</figcaption>

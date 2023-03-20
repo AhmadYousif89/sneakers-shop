@@ -7,7 +7,7 @@
 
 @layer base {
   * {
-    outline: transparent;
+    @apply outline-none outline-offset-0;
   }
   :root {
     font-size: 62.5%;
@@ -16,6 +16,17 @@
   }
   body {
     @apply bg-White font-kumbh;
+  }
+
+  input:not(:focus-visible, :placeholder-shown) + span {
+    display: none;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-transition-delay: 9999s;
+    transition-delay: 9999s;
   }
 }
 
@@ -27,31 +38,27 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-
+  .fake-placeholder {
+    @apply absolute left-8 pointer-events-none text-xl tracking-wider transition-all duration-[var(--duration)] peer-placeholder-shown:text-Grayish_blue peer-placeholder-shown:text-2xl peer-focus-visible:text-xl peer-focus-visible:-translate-y-12 peer-focus-visible:bg-white peer-focus-visible:text-Orange/75 peer-focus-visible:font-bold;
+  }
   .flex-center {
     @apply flex items-center justify-center;
   }
-
   .link {
     @apply capitalize text-xl xl:text-2xl outline-none focus-within:text-Dark_grayish_blue;
   }
-
   .li-item {
     @apply p-2 outline-none rounded-[1px] focus-within:outline-1 focus-within:outline focus-within:outline-Orange font-bold;
   }
-
   .footer-link {
     @apply link text-Grayish_blue hover:text-Dark_grayish_blue font-medium;
   }
-
   .header-link {
     @apply link  text-Very_dark_blue xl:text-Dark_grayish_blue hover:text-Grayish_blue tracking-wide font-normal;
   }
-
   .side {
     @apply font-bold;
   }
-
   .wave {
     position: absolute;
     bottom: 0;
@@ -60,14 +67,12 @@
     overflow: hidden;
     line-height: 0;
   }
-
   .wave svg {
     position: relative;
     display: block;
     width: calc(147% + 1.3px);
     height: 160px;
   }
-
   .wave .shape-fill {
     fill: #ffffff;
   }

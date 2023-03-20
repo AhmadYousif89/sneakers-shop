@@ -29,10 +29,15 @@ module.exports = {
           from: { transform: 'scale(0)', opacity: '.25' },
           to: { transform: 'scale(3)', opacity: '0' },
         },
+        slide: {
+          from: { transform: 'translateX(-100%)' },
+          to: { transform: 'translateX(100%)' },
+        },
       },
       animation: {
         ripple: 'ripple 1s linear forwards',
         spin: 'spin 1s ease-out infinite',
+        slide: 'slide 1.5s linear infinite',
       },
     },
   },
