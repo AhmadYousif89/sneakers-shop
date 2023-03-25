@@ -4,13 +4,14 @@ import { TUser } from '../types';
 
 type AuthPage = 'login' | 'register';
 type AuthState = {
-  user: TUser;
+  user: TUser | null;
   authPage: AuthPage;
 };
 
 type AuthActions = {
   setAuthPage: (page: AuthPage) => void;
   setUserCredentials: (credentials: TUser) => void;
+  logout: () => void;
 };
 
 type AuthStore = AuthState & AuthActions;
@@ -26,6 +27,7 @@ export const useAuthStore = create<AuthStore>()(
       authPage: 'login',
       setAuthPage: page => set({ authPage: page }),
       setUserCredentials: credentials => set({ user: credentials }),
+      logout: () => set({ user: null }),
     }),
     { name: key },
   ),

@@ -7,7 +7,7 @@ import { Overlay } from './overlay';
 type ActionModalProps = {
   state: boolean;
   className?: string;
-  variants: 'clear_cart';
+  variants: 'clear_cart' | 'delete_order';
   onCancel: MouseEventHandler<HTMLElement>;
   onConfirm: MouseEventHandler<HTMLElement>;
 };
@@ -22,6 +22,11 @@ export const ActionModal = ({
   let headerText = '';
   let bodyText: string | JSX.Element = '';
   let confirmText: string | JSX.Element = 'confirm';
+  confirmText = (
+    <span className="text-red-500 group-hover:text-white transition-colors duration-200">
+      delete
+    </span>
+  );
 
   if (variants === 'clear_cart') {
     headerText = 'Clear my cart';
@@ -31,10 +36,15 @@ export const ActionModal = ({
         ?
       </>
     );
-    confirmText = (
-      <span className="text-red-500 group-hover:text-white transition-colors duration-200">
-        delete
-      </span>
+  }
+
+  if (variants === 'delete_order') {
+    headerText = 'Delete this order';
+    bodyText = (
+      <>
+        You're about to <b className="text-red-500">delete</b> this currently active order, Are you
+        sure ?
+      </>
     );
   }
 
@@ -60,7 +70,7 @@ export const ActionModal = ({
             title="confirm action"
             variant={'modal_btns'}
             onClick={onConfirm}
-            className={`group ${variants === 'clear_cart' ? 'hover:bg-red-500' : ''}`}>
+            className={`group hover:bg-red-500`}>
             {confirmText}
           </Button>
           <Button

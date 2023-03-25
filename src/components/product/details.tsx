@@ -15,17 +15,25 @@ export const ProductDetails = () => {
   const qty = itemInCart ? itemInCart.qty : 0;
   const [itemQty, setItemQty] = useState(qty);
 
+  useEffect(() => {
+    if (!itemInCart) {
+      setItemQty(0);
+      setShowMsg(false);
+    }
+  }, [itemInCart]);
+
   const handleItemToCart = () => {
     if (itemQty === 0 || itemQty === itemInCart?.qty) {
       setShowMsg(false);
       return;
     }
+
     setShowMsg(true);
     const cartItem: TCartItem = {
       id: product.id,
       qty: itemQty,
       title: product.title,
-      price: +product.discountedPrice.toFixed(2),
+      price: product.discountedPrice,
       image: { full: '', thumb: product.image.thumb[0] },
       size: product.size,
       color: product.color,
@@ -34,13 +42,6 @@ export const ProductDetails = () => {
     };
     addCartItem(cartItem);
   };
-
-  useEffect(() => {
-    if (!itemInCart) {
-      setItemQty(0);
-      setShowMsg(false);
-    }
-  }, [itemInCart]);
 
   return (
     <section className="m-8 mb-40 justify-self-start xl:max-w-3xl xl:m-0">

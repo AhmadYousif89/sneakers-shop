@@ -15,6 +15,7 @@ type UserActions = {
   removeItemHistory: (id: number) => void;
   clearHistory: () => void;
   addOrder: (order: TOrder) => void;
+  deleteOrder: (orderId: string) => void;
   clearOrders: () => void;
 };
 
@@ -55,6 +56,12 @@ export const useUserStore = create<InitUserStoreState>()(
 
       addOrder: payload => {
         set(state => ({ orderList: [...state.orderList, payload] }));
+      },
+      deleteOrder: orderId => {
+        const exOrder = get().orderList.find(order => order.id === orderId);
+        if (exOrder) {
+          set(state => ({ orderList: state.orderList.filter(order => order.id !== exOrder.id) }));
+        }
       },
       clearOrders: () => set({ orderList: [] }),
     }),

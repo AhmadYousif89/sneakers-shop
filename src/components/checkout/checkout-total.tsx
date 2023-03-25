@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEventListener } from '../../hooks/use-event-listener';
-import { PromoCodes, useCartStore, useUserStore } from '../../store';
+import { PromoCodes, useAuthStore, useCartStore, useUserStore } from '../../store';
 
 import { TOrder } from '../../types';
 import { Button } from '../ui/button';
@@ -14,6 +14,7 @@ export const CheckoutTotal = () => {
 
   const addOrder = useUserStore(state => state.addOrder);
   const state = useCartStore(state => state);
+  const user = useAuthStore(state => state.user);
 
   const { ref: tipRef, isInside } = useEventListener<HTMLSpanElement>({});
 
@@ -33,6 +34,11 @@ export const CheckoutTotal = () => {
     setIsChecking(true);
     clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
+      if (!user) {
+        navigate('/auth');
+        return;
+      }
+
       const newOrder: TOrder = {
         id: Math.random().toString(36).substring(6),
         cart: state.cart,

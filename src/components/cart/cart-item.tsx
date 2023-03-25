@@ -1,7 +1,7 @@
 import { useCartStore } from '../../store/cart.store';
-import { TCartItem } from '../../types/TCartItem';
-import { DeleteIcon } from '../icons/delete';
+import { TCartItem } from '../../types';
 import { Button } from '../ui/button';
+import { DeleteIcon } from '../icons';
 
 export const CartItem = ({ item }: { item: TCartItem }) => {
   const removeCartItem = useCartStore(state => state.removeCartItem);
